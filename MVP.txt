@@ -1,0 +1,16 @@
+MVP for Neighborly
+Social media feed for people within the area
+Able to make posts with likes
+Can see user post history
+Create events and implement Google Maps API
+
+
+Backlog
+
+
+
+
+Roles:
+Elisa - Backend
+Heeran - Front-end
+James -
