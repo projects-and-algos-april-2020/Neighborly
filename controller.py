@@ -29,7 +29,15 @@ def add_user():
     if request.form['password'] != request.form['cpassword']:
         flash("password dont match")
     if '_flashes' not in session:
+        new_address = Address(
+            address=request.form['address'], 
+            city=request.form['city'],
+            state = request.form['state']) 
+        db.session.add(new_address)
+        db.session.commit()
+        flash("Address added")
         new_user = User(
+            address_id = new_address.id,
             first_name = request.form['fname'],
             last_name = request.form['lname'],
             email = request.form['email'],
@@ -37,14 +45,6 @@ def add_user():
         db.session.add(new_user)
         db.session.commit()
         flash("Successfully added user")
-        new_address = Address(
-            user_id = new_user.id,
-            address=request.form['address'], 
-            city=request.form['city'],
-            state = request.form['state']) 
-        db.session.add(new_address)
-        db.session.commit()
-        flash("Address added")
         return redirect("/")
     return redirect('/')   
         

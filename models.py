@@ -10,6 +10,8 @@ class User(db.Model):
     first_name = db.Column(db.String(45))
     last_name = db.Column(db.String(45))
     email = db.Column(db.String(255))
+    address_id = db.Column(db.Integer, db.ForeignKey('addresses.id', ondelete='cascade'))
+    address = db.relationship('Address', foreign_keys=[address_id])
     password_hash=db.Column(db.String(255))
     created_at = db.Column(db.DateTime, server_default = func.now())
     updated_at = db.Column(db.DateTime, server_default = func.now(), onupdate = func.now())
@@ -24,11 +26,11 @@ class Address(db.Model):
     address = db.Column(db.String(255))
     city = db.Column(db.String(255))
     state = db.Column(db.String(2))
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete='cascade'))
-    user = db.relationship('User', foreign_keys=[user_id])
     created_at = db.Column(db.DateTime, server_default = func.now())
     updated_at = db.Column(db.DateTime, server_default = func.now(), onupdate = func.now())
     
     def full_address(self):
         return self.address + ' ' + self.city
+
+
 
