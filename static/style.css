@@ -1,7 +1,7 @@
 * {
     margin: 0px;
     padding: 0px;
-    outline: 1px solid pink;
+    /* outline: 1px solid pink; */
 }
 
 .container {
@@ -35,6 +35,7 @@
     margin-left: 100px;
     font-size: larger;
     margin-top: 25px;
+    padding: 5px;
 }
 
 .login_page p {
@@ -46,17 +47,22 @@
     margin-left: 40px;
 }
 
+.login_page a {
+    margin-top: 10px;
+}
+
 .user_info {
     display: inline-block;
-    margin-left: 100px;
-    padding: 20px;
+    margin-left: 50px;
+    padding: 5px;
 }
 
 .user_info h2 {
     color: white;
     font-family: cursive;
     padding: 10px;
-    margin-bottom: 20px;
+    margin-top: 5px;
+    margin-bottom: 10px;
 
 }
 

@@ -29,12 +29,12 @@
                 <li><h3>Post History</h3></li>
                 {% for history in all_posts %}
                 <li>*{{history.message}}
-                    <p>~posted: {{history.date}} </p>
+                    <p>~posted: {{history.created_at}} </p>
                 </li>
                 {% endfor %} 
                 {% for history in all_events %}
                 <li>{{history.title}}
-                    <p>posted: {{history.date}}</p>
+                    <p>posted: {{history.created_at}}</p>
                 </li>
                 {% endfor %}        
             </ul>
