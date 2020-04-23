@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>Profile Page</title>
+</head>
+<body>
+    <div class="container">
+        {% for cur_user in all_users %}
+        <h3>{{cur_user.first_name}}'s Profile</h3>
+        {% endfor %}
+        <ul>
+            {% for cur_user in all_users %}
+            <li>Name: {{cur_user.first_name}} {{cur_user.last_name}} </li>
+            <li>Email: {{cur_user.email}}</li>
+            {% endfor %}
+        </ul> 
+        <h4>Post History</h4> 
+        <ul>
+            {% for history in all_posts %}
+            <li>{{history.message}}</li>
+            <li>posted: {{history.date}}</li>
+            {% endfor %}  
+            {% for history in all_events %}
+            <li>{{history.title}}</li>
+            <li>posted: {{history.date}}</li>
+            {% endfor %}        
+        </ul>
+    </div>
+</body>
+</html>

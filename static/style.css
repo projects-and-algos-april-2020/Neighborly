@@ -4,7 +4,7 @@
     /* outline: 1px solid pink; */
 }
 
-#container {
+.container {
     width: 800px;
     height: 600px;
     background-color: rgb(178, 204, 233);
@@ -13,11 +13,15 @@
     border-radius: 20px;    
 }
 
-h1 {
+.container h1 {
     font-family: cursive;
     color: white;
     
 
+}
+
+.container li {
+    list-style: none;
 }
 
 .login_page {

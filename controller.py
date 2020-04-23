@@ -1,6 +1,6 @@
 from flask import render_template, request, redirect, session, flash
 from config import app, db, bcrypt
-from models import User, Address
+from models import User, Address, Post, Post_comments, Event, Event_location, Event_comments, likes_table
 from datetime import date, time
 import re
 
@@ -10,6 +10,8 @@ def index():
     print("*"*40)
     return render_template("index.html")
 
+def register():
+    return render_template("register.html")
 
 def add_user():
     if len(request.form['fname'])<2:
@@ -35,7 +37,6 @@ def add_user():
             state = request.form['state']) 
         db.session.add(new_address)
         db.session.commit()
-        flash("Address added")
         new_user = User(
             address_id = new_address.id,
             first_name = request.form['fname'],
@@ -44,9 +45,10 @@ def add_user():
             password_hash=bcrypt.generate_password_hash(request.form['password']))   
         db.session.add(new_user)
         db.session.commit()
-        flash("Successfully added user")
+        flash("Successfull!")
+        flash("Please log in")
         return redirect("/")
-    return redirect('/')   
+    return redirect('/register')   
         
 
 def login():
@@ -63,12 +65,44 @@ def login():
         if user:
             if bcrypt.check_password_hash(user[0].password_hash, request.form['password']):
                 session['user_id'] = user[0].id
-                return redirect("/user_page")
+                return redirect("/user_profile")
             else:
                 flash("Email and/or password do not match")
         else:
                 flash("Email and/or password do not match")
     return redirect("/")
+
+
+def user_profile():
+    if 'user_id' not in session:
+        return redirect("/")
+    cur_user = User.query.filter_by(id=session['user_id'])
+    post_history = Post.query.filter_by(user_id= session['user_id'])
+    event_history = Event.query.filter_by(user_id = session['user_id'])
+    return render_template("user_profile.html", all_users = cur_user, all_posts = post_history, all_events = event_history)
+
+def dashboard():
+    if 'user_id' not in session:
+        return redirect("/")
+    posts = Post.query.all()
+    return render_template("dashboard.html", all_posts = posts)
+
+def add_post():
+    if 'user_id' not in session:
+        return redirect("/")
+    is_valid = True
+    if len(request.form['message']) < 1:
+        is_valid = False
+        flash("message is required to post")
+    if is_valid:
+        new_post = Post(
+            message = request.form['message'],
+            user_id = session['user_id'])
+        db.session.add(new_post)
+        db.session.commit()
+        return redirect("/dashboard")
+    return redirect("/dashboard")
+
 
 
 def logout():

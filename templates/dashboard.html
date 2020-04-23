@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>Dashboard</title>
+</head>
+<body>
+    <div class="container">
+        <h4>Dashboard</h4>
+        <form action="/add/post" method="POST">
+            <p><input type="text" name="message" placeholder="Write a post here"></p>
+        </form>
+        <h5>Messages</h5>
+        <ul>
+            {% for post in all_posts %}
+            <li>{{post.message}}</li>
+            {% endfor %}
+        </ul>
+            
+    </div>
+
+
+</body>
+</html>

@@ -7,23 +7,8 @@
     <title>Neighborly: Log In & Register</title>
 </head>
 <body>
-    <div id="container">
+    <div class="container">
             <h1>Neighborly</h1>   
-        <div class="login_page">
-            <h4>Get Started!</h4>
-            <form action="/process/user" method="POST">
-                <p>First Name <input type="text" name="fname"></p>
-                <p>Last Name <input type="text" name="lname"></p>
-                <p>Email <input type="text" name="email"></p>
-                <p>Address <input type="text" name="address"></p>
-                <p>City <input type="text" name="city"></p>
-                <p>State <input type="text" name="state"></p>
-                <p>Password <input type="password" name="password"></p>
-                <p>Confirm <input type="password" name="cpassword"></p>
-                <input type="submit" value="Register">
-            </form> 
-    
-        </div>
         <div class="login_page">
             <h4>Welcome Back!</h4>
             <form action="/login" method="POST">
@@ -31,6 +16,8 @@
                 <p>Password: <input type="password" name="password"></p>
                 <input type="submit" value="Login">
             </form>
+            <a href="/register">Not a member? Register</a>
+
             {% with messages = get_flashed_messages() %}
             {% if messages %}
                 {% for message in messages %}
