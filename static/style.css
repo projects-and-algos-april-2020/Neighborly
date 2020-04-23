@@ -1,7 +1,7 @@
 * {
     margin: 0px;
     padding: 0px;
-    /* outline: 1px solid pink; */
+    outline: 1px solid pink;
 }
 
 .container {
@@ -10,19 +10,24 @@
     background-color: rgb(178, 204, 233);
     margin: 0px auto;
     padding: 25px;
-    border-radius: 20px;    
+    border-radius: 20px;  
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;  
 }
 
-.container h1 {
-    font-family: cursive;
-    color: white;
-    
+    .container h1 {
+        font-family: cursive;
+        color: white;
+        
 
-}
+    }
 
-.container li {
-    list-style: none;
-}
+    .container li {
+        list-style: none;
+    }
+
+    .container a {
+        
+    }
 
 .login_page {
     display: inline-block;
@@ -40,3 +45,67 @@
     padding-bottom: 10px;
     margin-left: 40px;
 }
+
+.user_info {
+    display: inline-block;
+    margin-left: 100px;
+    padding: 20px;
+}
+
+.user_info h2 {
+    color: white;
+    font-family: cursive;
+    padding: 10px;
+    margin-bottom: 20px;
+
+}
+
+.user_info ul {
+    display: inline-block;
+    vertical-align: top;
+    padding: 5px;
+}
+
+
+
+.user_info ul h3 {
+    color: white;
+    font-family: cursive;
+    padding: 10px;
+    display: inline-block
+}
+
+.user_info p {
+    font-style: italic;
+}
+
+.dashboard {
+    padding: 20px;
+}
+.dashboard h3 {
+    padding-bottom: 10px;
+    
+    color: white;
+
+}
+
+.dashboard form {
+   padding: 10px;
+    
+}
+
+.posts {
+    margin-top: 15px;
+
+}
+.posts li {
+    margin-top: 10px;
+}
+
+.posts li p {
+    display: inline-block;
+}
+
+
+
+
