@@ -15,21 +15,45 @@
         </div>
         <div class="dashboard">
             <h3>Dashboard</h3>
+            <hr>
             <form action="/add/post" method="POST">
                 <p> <textarea name="message" placeholder="Write a post here"></textarea></p>
                 <input type="submit" value="Post">
             </form>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{message}}</p>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+            <hr>
             <div class="posts">
                 <h3>Posts</h3>
                 <ul>
                     {% for post in all_posts %}
                     <li>
                         <p>{{post.user.first_name}} {{post.user.last_name}} says:</p> 
-                        <p>{{post.message}}</p>
+                        <span><p>{{post.message}}</p></span>
                     </li>
                     {% endfor %}
                 </ul>
             </div>
+            <hr>
+            <div class="events">
+                <h3>Events</h3>
+                <ul>
+                    {% for event in all_events %}
+                    <li>
+                        <p>{{event.title}}</p>
+                        <p>{{event.description}}</p>
+                        <p>hosted by: {{event.user.first_name}} {{event.user.last_name}}</p>
+                        <p>On {{event.date}} {{event.time}}</p>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <a href="/events"><button>Add an Event</button></a>
             
         </div>
     </div>
