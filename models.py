@@ -16,6 +16,7 @@ class User(db.Model):
     address = db.relationship('Address', foreign_keys=[address_id])
     password_hash=db.Column(db.String(255))
     posts_this_user_likes = db.relationship('Post', secondary=likes_table, passive_deletes=True)
+    all_post = db.relationship('Post', back_populates="user", cascade="all, delete, delete-orphan")
     created_at = db.Column(db.DateTime, server_default = func.now())
     updated_at = db.Column(db.DateTime, server_default = func.now(), onupdate = func.now())
 

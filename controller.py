@@ -85,7 +85,7 @@ def dashboard():
     if 'user_id' not in session:
         return redirect("/")
     posts = Post.query.all()
-    return render_template("dashboard.html", all_posts = posts)
+    return render_template("dashboard.html", all_posts = posts )
 
 def add_post():
     if 'user_id' not in session:
