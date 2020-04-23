@@ -17,8 +17,6 @@
     .container h1 {
         font-family: cursive;
         color: white;
-        
-
     }
 
     .container li {
@@ -34,18 +32,18 @@
     padding: 5px;
 }
 
-.login_page p {
-    padding-bottom: 5px;
-}
+    .login_page p {
+        padding-bottom: 5px;
+    }
 
-.login_page h4 {
-    padding-bottom: 10px;
-    margin-left: 40px;
-}
+    .login_page h4 {
+        padding-bottom: 10px;
+        margin-left: 40px;
+    }
 
-.login_page a {
-    margin-top: 10px;
-}
+    .login_page a {
+        margin-top: 10px;
+    }
 
 .user_info {
     display: inline-block;
@@ -53,55 +51,72 @@
     padding: 5px;
 }
 
-.user_info h2 {
-    color: white;
-    font-family: cursive;
-    padding: 10px;
-    margin-top: 5px;
-    margin-bottom: 10px;
+    .user_info h2 {
+        color: white;
+        font-family: cursive;
+        padding: 10px;
+        margin-top: 5px;
+        margin-bottom: 10px;
 
-}
+    }
 
-.user_info ul {
-    display: inline-block;
-    vertical-align: top;
-    padding: 5px;
-}
+    .user_info ul {
+        display: inline-block;
+        vertical-align: top;
+        padding: 5px;
+    }
 
+    .user_info ul h3 {
+        color: white;
+        font-family: cursive;
+        display: inline-block
+    }
 
+    .user_info p {
+        font-style: italic;
+    }
 
-.user_info ul h3 {
-    color: white;
-    font-family: cursive;
-    padding: 10px;
-    display: inline-block
-}
+    .user_info li {
+        padding: 5px;
+    }
 
-.user_info p {
-    font-style: italic;
-}
+.container_dashboard {
+        width: 800px;
+       
+        background-color: rgb(178, 204, 233);
+        margin: 0px auto;
+        padding: 25px;
+        border-radius: 20px;  
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;  
+    }
+    
+        .container_dashboard h1 {
+            font-family: cursive;
+            color: white;
+        }
+    
+        .container_dashboard li {
+            list-style: none;
+        }
 
 .dashboard {
     padding: 20px;
 }
-.dashboard h3 {
-    padding-bottom: 10px;
-    
-    color: white;
+    .dashboard h3 {
+        padding-bottom: 10px;
+        
+        color: white;
+    }
 
-}
+    .dashboard form {
+    padding: 10px; 
+    }
 
-.dashboard form {
-   padding: 10px;
-    
-}
-
-.dashboard button {
-    vertical-align: bottom;
-    margin-top: 40px;
-    margin-left: 600px;
-}
-
+    .dashboard button {
+        vertical-align: bottom;
+        margin-top: 40px;
+        margin-left: 600px;
+    }
 
 
 .posts {
@@ -122,4 +137,12 @@
 
 }
 
+.events {
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+}
+    .events li {
+        margin-top: 15px;
+    }
 
