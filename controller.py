@@ -85,7 +85,8 @@ def dashboard():
     if 'user_id' not in session:
         return redirect("/")
     posts = Post.query.all()
-    return render_template("dashboard.html", all_posts = posts)
+    events = Event.query.all()
+    return render_template("dashboard.html", all_posts = posts, all_events = events )
 
 def add_post():
     if 'user_id' not in session:
@@ -103,6 +104,53 @@ def add_post():
         return redirect("/dashboard")
     return redirect("/dashboard")
 
+def events():
+    if 'user_id' not in session:
+        return redirect("/")
+    events = Event.query.all()
+    return render_template("events.html", all_events = events)
+
+def add_event():
+    if 'user_id' not in session:
+        return redirect("/")
+    is_valid = True
+    if len(request.form['title']) < 1:
+        is_valid = False
+        flash("Event title is required")
+    if len(request.form['description']) < 1:
+        is_valid = False
+        flash("Description is required")
+    if len(request.form['date']) < 1:
+        is_valid = False
+        flash("Date is required")
+    if len(request.form['time']) < 1:
+        is_valid = False
+        flash("Time is required")
+    if len(request.form['address']) < 1:
+        is_valid = False
+        flash("Location address is required")
+    if len(request.form['city']) < 1:
+        is_valid = False
+        flash("city is required")
+    if is_valid:
+        new_location = Event_location(
+            address = request.form['address'],
+            city = request.form['city'],
+        )
+        db.session.add(new_location)
+        db.session.commit()               
+        new_event = Event(
+            title = request.form['title'],
+            description = request.form['description'],
+            date = request.form['date'],
+            time = request.form['time'],
+            user_id = session['user_id'],
+            location_id = new_location.id)
+        db.session.add(new_event)
+        db.session.commit()
+        flash("Successfully added Event!")
+        return redirect("/events")
+    return redirect("/events")
 
 
 def logout():

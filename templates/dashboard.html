@@ -7,18 +7,55 @@
     <title>Dashboard</title>
 </head>
 <body>
-    <div class="container">
-        <h4>Dashboard</h4>
-        <form action="/add/post" method="POST">
-            <p><input type="text" name="message" placeholder="Write a post here"></p>
-        </form>
-        <h5>Messages</h5>
-        <ul>
-            {% for post in all_posts %}
-            <li>{{post.message}}</li>
-            {% endfor %}
-        </ul>
+    <div class="container_dashboard">
+        <h1>Neighborly</h1>
+        <div class="navigation">
+            <a href="/user_profile">Profile</a>
+            <a href="/logout">Logout</a>
+        </div>
+        <div class="dashboard">
+            <h3>Dashboard</h3>
+            <hr>
+            <form action="/add/post" method="POST">
+                <p> <textarea name="message" placeholder="Write a post here"></textarea></p>
+                <input type="submit" value="Post">
+            </form>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{message}}</p>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+            <hr>
+            <div class="posts">
+                <h3>Posts</h3>
+                <ul>
+                    {% for post in all_posts %}
+                    <li>
+                        <p>{{post.user.first_name}} {{post.user.last_name}} says:</p> 
+                        <span><p>{{post.message}}</p></span>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <hr>
+            <div class="events">
+                <h3>Events</h3>
+                <ul>
+                    {% for event in all_events %}
+                    <li>
+                        <p>{{event.title}}</p>
+                        <p>{{event.description}}</p>
+                        <p>hosted by: {{event.user.first_name}} {{event.user.last_name}}</p>
+                        <p>On {{event.date}} {{event.time}}</p>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <a href="/events"><button>Add an Event</button></a>
+            
+        </div>
     </div>
-
 </body>
 </html>

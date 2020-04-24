@@ -8,26 +8,39 @@
 </head>
 <body>
     <div class="container">
-        {% for cur_user in all_users %}
-        <h3>{{cur_user.first_name}}'s Profile</h3>
-        {% endfor %}
-        <ul>
+        <h1>Neighborly</h1>
+        <div class="navigation">
+            <a href="/dashboard">Messages</a>
+            <a href="/logout">Logout</a>
+        </div>
+        <div class="user_info">
             {% for cur_user in all_users %}
-            <li>Name: {{cur_user.first_name}} {{cur_user.last_name}} </li>
-            <li>Email: {{cur_user.email}}</li>
+            <h2>{{cur_user.first_name}}'s Profile</h2>
             {% endfor %}
-        </ul> 
-        <h4>Post History</h4> 
-        <ul>
-            {% for history in all_posts %}
-            <li>{{history.message}}</li>
-            <li>posted: {{history.date}}</li>
-            {% endfor %}  
-            {% for history in all_events %}
-            <li>{{history.title}}</li>
-            <li>posted: {{history.date}}</li>
-            {% endfor %}        
-        </ul>
+            <ul>
+                {% for cur_user in all_users %}
+                <li>{{cur_user.first_name}} {{cur_user.last_name}}
+                    <p>{{cur_user.email}}</p> 
+                </li>
+                {% endfor %}
+            </ul> 
+        </div>
+        <div class="user_info"> 
+            <ul>
+                <li><h3>Posts</h3></li>
+                {% for history in all_posts %}
+                <li>*{{history.message}}
+                    <p>~posted: {{history.created_at}} </p>
+                </li>
+                {% endfor %} 
+                <li><h3>Events</h3></li>
+                {% for history in all_events %}
+                <li>*{{history.title}}
+                    <p>~posted: {{history.created_at}}</p>
+                </li>
+                {% endfor %}        
+            </ul>
+        </div>
     </div>
 </body>
 </html>
