@@ -31,6 +31,7 @@ class Address(db.Model):
     address = db.Column(db.String(255))
     city = db.Column(db.String(255))
     state = db.Column(db.String(2))
+    zipcode = db.Column(db.String(30))
     created_at = db.Column(db.DateTime, server_default = func.now())
     updated_at = db.Column(db.DateTime, server_default = func.now(), onupdate = func.now())
     
