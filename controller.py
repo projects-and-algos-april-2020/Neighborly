@@ -110,6 +110,12 @@ def events():
     events = Event.query.all()
     return render_template("events.html", all_events = events)
 
+def event_details(event_id):
+    if 'user_id' not in session:
+        return redirect("/")
+    event = Event.query.filter_by(id = int(event_id)).first()
+    return render_template("events.html", this_event = event)
+
 def add_event():
     if 'user_id' not in session:
         return redirect("/")

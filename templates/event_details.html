@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style1.css') }}">
+    <title>Event Details</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Neighborly</h1>
+        <div class="navigation">
+            <a href="/user_profile">Profile</a>
+            <a href="/logout">Logout</a>
+            <a href="/dashboard">Messages</a>
+        </div>
+        <div class="events">
+            {% for event in this_event %}
+            <h3> {{event.title}} Details</h3>
+            <ul>
+                <li>
+                    <p>{{event.description}}</p>
+                    <p>hosted by: {{event.user.first_name}} {{event.user.last_name}}</p>
+                    <p>On {{event.date}} {{event.time}}</p>
+                </li>
+            </ul>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
