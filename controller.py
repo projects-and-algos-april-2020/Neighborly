@@ -65,7 +65,7 @@ def login():
         if user:
             if bcrypt.check_password_hash(user[0].password_hash, request.form['password']):
                 session['user_id'] = user[0].id
-                return redirect("/user_profile")
+                return redirect("/dashboard")
             else:
                 flash("Email and/or password do not match")
         else:
@@ -86,7 +86,8 @@ def dashboard():
         return redirect("/")
     posts = Post.query.all()
     events = Event.query.all()
-    return render_template("dashboard.html", all_posts = posts, all_events = events )
+    cur_user = User.query.filter_by(id=session['user_id'])
+    return render_template("dashboard.html", all_posts = posts, all_events = events,all_users = cur_user )
 
 def add_post():
     if 'user_id' not in session:
@@ -108,13 +109,14 @@ def events():
     if 'user_id' not in session:
         return redirect("/")
     events = Event.query.all()
+    session['event_id'] = events[0].id
     return render_template("events.html", all_events = events)
 
 def event_details(event_id):
     if 'user_id' not in session:
         return redirect("/")
-    event = Event.query.filter_by(id = int(event_id)).first()
-    return render_template("events.html", this_event = event)
+    this_event = Event.query.filter_by(id = int(event_id)).all()
+    return render_template("event_details.html", all_events = this_event)
 
 def add_event():
     if 'user_id' not in session:
@@ -138,10 +140,14 @@ def add_event():
     if len(request.form['city']) < 1:
         is_valid = False
         flash("city is required")
+    if len(request.form['zipcode']) < 1:
+        is_valid = False
+        flash("Zipcode is required")
     if is_valid:
         new_location = Event_location(
             address = request.form['address'],
             city = request.form['city'],
+            zipcode = request.form['zipcode']
         )
         db.session.add(new_location)
         db.session.commit()               

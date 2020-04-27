@@ -72,9 +72,6 @@
         display: inline-block
     }
 
-    .user_info p {
-        font-style: italic;
-    }
 
     .user_info li {
         padding: 5px;
@@ -103,7 +100,7 @@
     padding: 20px;
 }
     .dashboard h3 {
-        padding-bottom: 10px;
+        padding-bottom: 5px;
         
         color: white;
     }
@@ -114,34 +111,24 @@
 
     .dashboard button {
         vertical-align: bottom;
-        margin-top: 40px;
-        margin-left: 600px;
+    
+       
     }
 
 
-.posts {
-    margin-top: 15px;
-    margin-bottom: 15px;
-
-}
-.posts li {
-    margin-top: 10px;
-}
-
-.posts li p {
-    display: inline-block;
-}
-
-.posts span {
-    font-style: italic;
-
-}
-
-.events {
-    margin-top: 15px;
-    margin-bottom: 15px;
-
-}
-    .events li {
+    .events {
         margin-top: 15px;
+        margin-bottom: 15px;
+        display: inline-block;
+        width: 300px;
+        vertical-align: top;
+        margin-left: 50px;
+
     }
+        .events li {
+            margin-top: 15px;
+        }
+
+        .events ul {
+            display: inline-block;
+        }

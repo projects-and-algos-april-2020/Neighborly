@@ -10,21 +10,22 @@
     <div class="container">
         <h1>Neighborly</h1>
         <div class="navigation">
+            <a href="/dashboard">Dashboard</a>
             <a href="/user_profile">Profile</a>
             <a href="/logout">Logout</a>
-            <a href="/dashboard">Messages</a>
+            
         </div>
-        <div class="events">
-            {% for event in this_event %}
-            <h3> {{event.title}} Details</h3>
+        <div class="events">  
             <ul>
+                {% for event in all_events %}
                 <li>
+                    <p>{{event.title}}</p>
                     <p>{{event.description}}</p>
                     <p>hosted by: {{event.user.first_name}} {{event.user.last_name}}</p>
                     <p>On {{event.date}} {{event.time}}</p>
                 </li>
+                {% endfor %}
             </ul>
-            {% endfor %}
         </div>
     </div>
 </body>

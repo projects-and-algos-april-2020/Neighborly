@@ -10,7 +10,8 @@
     <div class="container">
         <h1>Neighborly</h1>
         <div class="navigation">
-            <a href="/dashboard">Messages</a>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/user_profile">Profile</a>
             <a href="/logout">Logout</a>
         </div>
         <div class="user_info">
@@ -29,14 +30,14 @@
             <ul>
                 <li><h3>Posts</h3></li>
                 {% for history in all_posts %}
-                <li>*{{history.message}}
-                    <p>~posted: {{history.created_at}} </p>
+                <li>~{{history.message}}
+                    <p>posted: {{history.created_at}} </p>
                 </li>
                 {% endfor %} 
                 <li><h3>Events</h3></li>
                 {% for history in all_events %}
-                <li>*{{history.title}}
-                    <p>~posted: {{history.created_at}}</p>
+                <li>~{{history.title}}
+                    <p>posted: {{history.created_at}}</p>
                 </li>
                 {% endfor %}        
             </ul>
