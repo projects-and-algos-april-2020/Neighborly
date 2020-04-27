@@ -3,8 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"> </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <title>Neighborly: Log In & Register</title>
+        <style>
+            * {
+                margin: 0px;
+                padding: 5px 70px 0px 40px;
+                /* outline: 1px solid pink; */
+            }
+        
+            .container {
+                width: 900px;
+                background-color: rgb(178, 204, 233);
+                margin: 0px auto;
+                padding: 40px;
+                border-radius: 20px;
+                font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            }
+        
+            .container h1 {
+                font-family: cursive;
+                color: white;
+            }
+        
+            .container li {
+                list-style: none;
+            }
+        
+            .login_page {
+                display: inline-block;
+                vertical-align: top;
+                margin-left: 100px;
+                font-size: larger;
+                margin-top: 25px;
+                padding: 5px;
+            }
+        
+            .login_page p {
+                padding-bottom: 5px;
+        
+            }
+        
+            .login_page h4 {
+                padding-bottom: 10px;
+                margin-left: 40px;
+            }
+        
+            .login_page a {
+                margin-top: 10px;
+            }
+        
+            .user_info {
+                display: inline-block;
+                margin-left: 50px;
+                padding: 5px;
+            }
+        
+            .user_info h2 {
+                color: white;
+                font-family: cursive;
+                padding: 10px;
+                margin-top: 5px;
+                margin-bottom: 10px;
+        
+            }
+        
+            .user_info ul {
+                display: inline-block;
+                vertical-align: top;
+                padding: 5px;
+            }
+        
+            .user_info ul h3 {
+                color: white;
+                font-family: cursive;
+                display: inline-block
+            }
+        
+            .user_info p {
+                font-style: italic;
+            }
+        
+            .user_info li {
+                padding: 5px;
+            }
+        
+            .container_dashboard {
+                width: 800px;
+        
+                background-color: rgb(178, 204, 233);
+                margin: 0px auto;
+                padding: 25px;
+                border-radius: 20px;
+                font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            }
+        
+            .container_dashboard h1 {
+                font-family: cursive;
+                color: white;
+            }
+        
+            .container_dashboard li {
+                list-style: none;
+            }
+        
+            .dashboard {
+                padding: 20px;
+            }
+        
+            .dashboard h3 {
+                padding-bottom: 10px;
+        
+                color: white;
+            }
+        
+            .dashboard form {
+                padding: 10px;
+            }
+        
+            .dashboard button {
+                vertical-align: bottom;
+                margin-top: 40px;
+                margin-left: 600px;
+            }
+        
+        
+            .posts {
+                margin-top: 15px;
+                margin-bottom: 15px;
+        
+            }
+        
+            .posts li {
+                margin-top: 10px;
+            }
+        
+            .posts li p {
+                display: inline-block;
+            }
+        
+            .posts span {
+                font-style: italic;
+        
+            }
+        
+            .events {
+                margin-top: 15px;
+                margin-bottom: 15px;
+        
+            }
+        
+            .events li {
+                margin-top: 15px;
+            }
+        </style>
 </head>
 <body>
     <div class="container">
@@ -12,12 +168,26 @@
         <div class="login_page">
             <h4>Welcome Back Neighbor!</h4>
             <form action="/login" method="POST">
-                <p>Email: <input type="text" name="email"></p>
-                <p>Password: <input type="password" name="password"></p>
-                <input type="submit" value="Login">
-            </form>
+            <div class="form-group">
+                <label class="control-label col-sm-5" for="email">Email</label>
+                <div class="col-sm-7">
+                    <input type="email" class="form-control form-control-sm" name="email">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-5" for="password">Password</label>
+                <div class="col-sm-7">
+                    <input type="password" class="form-control form-control-sm" name="password">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2"></div>
+                <div class="col-sm-10">
+                    <input type="submit" class="btn btn-primary" value="Login">
+                </div>
+            </div><br>
             <hr>
-            <a href="/register">Not a member? Register</a>
+            <a href="/register">Not a member? Register here.</a>
 
             {% with messages = get_flashed_messages() %}
             {% if messages %}
