@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style1.css') }}">
+    <title>Edit Your Event</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Neighborly</h1>
+        <div class="navigation">
+            <a href="/dashboard">Dashboard</a>
+            <a href="/user_profile">Profile</a>
+            <a href="/logout">Logout</a>
+        </div>
+        {% for schedule in all_schedules %}
+        <h3>Edit {{event.title}} </h3>
+        <form action="/update/event/{{event.id}}" method="POST">
+            <p>Title: <input type="text" name="title" value="{{event.title}}"></p>
+            <p>Description: <input type="text" name="description" value="{{event.description}}"> </p>
+            <p>Description: <textarea name="description" value="{{event.description}}"></textarea></p>
+            <p>Date: <input type="date" name="date" value="{{event.date}}"></p>
+            <p>Time: <input type="time" name="time" value="{{event.time}}"></p>
+            <input type="submit" value="Update">                    
+        </form>
+        {% endfor %}
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{message}}</p>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}  
+    </div>
+</body>
+</html>

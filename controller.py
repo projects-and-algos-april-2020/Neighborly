@@ -166,13 +166,14 @@ def delete_event(event_id):
         db.session.commit()
         flash("Event successfully deleted")
         return redirect("/dashboard")
+    return redirect("/dashboard")
 
 
 def edit_event(event_id):
     if 'user_id' not in session:
         return redirect("/")
     this_event = Event.query.filter_by(id = int(event_id)).first()
-    return render_template("edit_event.html", all_events = this_event )
+    return render_template("edit_event.html", all_events = this_event)
 
 def update_event(event_id):
     if 'user_id' not in session:
@@ -190,15 +191,6 @@ def update_event(event_id):
     if len(request.form['time']) < 1:
         is_valid = False
         flash("Time is required")
-    if len(request.form['address']) < 1:
-        is_valid = False
-        flash("Location address is required")
-    if len(request.form['city']) < 1:
-        is_valid = False
-        flash("city is required")
-    if len(request.form['zipcode']) < 1:
-        is_valid = False
-        flash("Zipcode is required")
     if is_valid:
         this_event = Event.query.filter_by(id = int(event_id)).first()
         if this_event is not None:
@@ -235,80 +227,6 @@ def add_event_comments(event_id):
         return redirect("/event/details/{}".format(event_id))
     return redirect("/event/details/{}".format(event_id))          
 
-
-
-
-
-
-
-
-    
-
-    
-
-
-# def edit_address():
-#     if 'user_id' not in session:
-#         return redirect("/")
-#     this_address = Address.query.filter_by(id = session['address_id']).all()
-#     return render_template("edit_address.html", all_addresses = this_address)
-    
-# def update_address(address_id):
-#     if 'user_id' not in session:
-#         return redirect("/")
-#     is_valid = True
-#     if len(request.form['address'])<2:
-#         is_valid = False
-#         flash("Address is required")
-#     if len(request.form['city'])<2:
-#         is_valid = False
-#         flash("City must be at least 2 characters")
-#     if len(request.form['state'])<2:
-#         is_valid = False
-#         flash("State initials required, 2 characters")      
-#     if is_valid:    
-#         this_address = Address.query.filter_by(id = int(address_id)).first()
-#         if this_address is not None:
-#             this_address.address = request.form['address']
-#             this_address.city = request.form['city']
-#             this_address.state = request.form['state']
-#             db.session.commit()
-#             return redirect("/user_page") 
-#         return redirect("/")
-#     return redirect("/edit/address")
-
-# def edit_user():
-#     if 'user_id' not in session:
-#         return redirect("/")
-#     this_user = User.query.filter_by(id = session['user_id']).all()
-#     return render_template("edit_user.html", all_users = this_user)
-    
-    
-# def update_user(user_id):
-#     if 'user_id' not in session:
-#         return redirect("/")
-#     is_valid = True
-#     if len(request.form['fname'])<2:
-#         is_valid = False
-#         flash("First name is required")
-#     if len(request.form['lname'])<2:
-#         is_valid = False
-#         flash("Last name is required")
-#     if not EMAIL_REGEX.match(request.form['email']):
-#         is_valid = False
-#         flash("Valid email is required")
-#     if is_valid:   
-#         this_user = User.query.filter_by(id = int(user_id)).first()
-#         if this_user is not None:
-#             this_user.first_name = request.form['fname']
-#             this_user.last_name = request.form['lname']
-#             this_user.email = request.form['email']
-#             db.session.commit()
-#             return redirect("/confirmation")
-#         return redirect("/")
-#     return redirect("/edit/user")  
-        
-    
 
 
 def logout():
