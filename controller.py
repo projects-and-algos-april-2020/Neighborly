@@ -133,6 +133,9 @@ def add_event():
     if len(request.form['city']) < 1:
         is_valid = False
         flash("city is required")
+    if len(request.form['state']) < 1:
+        is_valid = False
+        flash("State initials are required")
     if len(request.form['zipcode']) < 1:
         is_valid = False
         flash("Zipcode is required")
