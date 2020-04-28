@@ -12,5 +12,5 @@ Backlog
 
 Roles:
 Elisa - Backend
-Heeran - Front-end
+Heeran - Front-end and Google Maps API
 James - API
