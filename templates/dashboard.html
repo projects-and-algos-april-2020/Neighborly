@@ -23,8 +23,6 @@
                 <p> <textarea name="message" placeholder="Write a post here"></textarea></p>
                 <input type="submit" value="Post">
             </form>
-            <hr>            
-            <a href="/events"><button>Add an Event</button></a>
             {% with messages = get_flashed_messages() %}
             {% if messages %}
                 {% for message in messages %}
@@ -32,6 +30,8 @@
                 {% endfor %}
             {% endif %}
             {% endwith %}
+            <hr>            
+            <a href="/events"><button>Add an Event</button></a>
             <hr>
             <div class="dashboard_content">
                 <div class="events">
@@ -54,6 +54,10 @@
                             <p>hosted by: {{event.user.first_name}} {{event.user.last_name}}</p>
                             <p>on {{event.date}}</p>
                             <a href="/event/details/{{event.id}}"><button>Event Details</button></a>
+                            {% if session['user_id'] == event.user_id %}
+                            <a href="/delete/{{event.id}}"><button>Delete</button></a>
+                            <a href="/edit/event/{{event_id}}"><button>Edit</button></a>
+                            {% endif %}    
                         </li>
                         {% endfor %}
                     </ul>

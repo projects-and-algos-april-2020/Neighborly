@@ -48,7 +48,7 @@ class Post(db.Model):
     created_at = db.Column(db.DateTime, server_default = func.now())
     updated_at = db.Column(db.DateTime, server_default = func.now(), onupdate = func.now())
 
-class Post_comments(db.Model):
+class Post_comment(db.Model):
     __tablename__ = "post_comments" 
     id = db.Column(db.Integer, primary_key=True)
     message = db.Column(db.String(255))
@@ -71,6 +71,7 @@ class Event(db.Model):
     user = db.relationship('User', foreign_keys=[user_id])
     location_id = db.Column(db.Integer, db.ForeignKey('event_locations.id', ondelete='cascade'))
     location = db.relationship('Event_location', foreign_keys=[location_id])
+    all_comment = db.relationship('Event_comment', back_populates="event", cascade="all, delete, delete-orphan")
     created_at = db.Column(db.DateTime, server_default = func.now())
     updated_at = db.Column(db.DateTime, server_default = func.now(), onupdate = func.now())
 
@@ -83,7 +84,7 @@ class Event_location(db.Model):
     created_at = db.Column(db.DateTime, server_default = func.now())
     updated_at = db.Column(db.DateTime, server_default = func.now(), onupdate = func.now())
 
-class Event_comments(db.Model):
+class Event_comment(db.Model):
     __tablename__ = "event_comments" 
     id = db.Column(db.Integer, primary_key=True)
     message = db.Column(db.String(255))

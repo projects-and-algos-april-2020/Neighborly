@@ -1,5 +1,5 @@
 from config import app
-from controller import index, add_user, login, logout, register, user_profile, dashboard, add_post, events, add_event, event_details
+from controller import index, add_user, login, logout, register, user_profile, dashboard, add_post, events, add_event, event_details, add_event_comments, edit_event, update_event, delete_event
 
 
 app.add_url_rule("/", view_func=index)
@@ -13,3 +13,7 @@ app.add_url_rule("/add/post", view_func=add_post, methods=['POST'])
 app.add_url_rule("/events", view_func=events)
 app.add_url_rule("/add/event", view_func=add_event, methods=['POST'])
 app.add_url_rule("/event/details/<event_id>", view_func=event_details)
+app.add_url_rule("/add/event_comment/<event_id>", view_func=add_event_comments, methods=['POST'])
+app.add_url_rule("/edit/event/<event_id>", view_func=edit_event)
+app.add_url_rule("/update/event/<event_id>", view_func=update_event, methods=['POST'])
+app.add_url_rule("/delete/<event_id>", view_func=delete_event)

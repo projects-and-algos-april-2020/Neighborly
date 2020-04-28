@@ -26,7 +26,28 @@
                 </li>
                 {% endfor %}
             </ul>
+
         </div>
+        {% for event in all_events %}
+        <form action="/add/event_comment/{{event.id}}", method="POST">
+            <p><textarea name="message" placeholder="Add a message"></textarea></p>
+            <input type="submit" value="Post">
+        </form>
+        {% endfor %}
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{message}}</p>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <hr>
+        <ul>
+            {% for comment in all_comments %}
+            <li>{{comment.user.first_name}} wrote:</li>
+            <li>{{comment.message}}</li>
+            {% endfor %}
+        </ul>
     </div>
 </body>
 </html>
