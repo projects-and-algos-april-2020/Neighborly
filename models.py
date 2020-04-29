@@ -45,6 +45,7 @@ class Post(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete='cascade'))
     user = db.relationship('User', foreign_keys=[user_id])
     users_who_like_this_post = db.relationship('User', secondary=likes_table, passive_deletes=True)
+    all_post = db.relationship('Post_comment', back_populates="post", cascade="all, delete, delete-orphan")
     created_at = db.Column(db.DateTime, server_default = func.now())
     updated_at = db.Column(db.DateTime, server_default = func.now(), onupdate = func.now())
 

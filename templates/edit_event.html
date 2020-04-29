@@ -14,12 +14,11 @@
             <a href="/user_profile">Profile</a>
             <a href="/logout">Logout</a>
         </div>
-        {% for schedule in all_schedules %}
+        {% for event in all_events %}
         <h3>Edit {{event.title}} </h3>
         <form action="/update/event/{{event.id}}" method="POST">
             <p>Title: <input type="text" name="title" value="{{event.title}}"></p>
-            <p>Description: <input type="text" name="description" value="{{event.description}}"> </p>
-            <p>Description: <textarea name="description" value="{{event.description}}"></textarea></p>
+            <p>Description: <textarea name="description" placeholder="{{event.description}}"></textarea></p>
             <p>Date: <input type="date" name="date" value="{{event.date}}"></p>
             <p>Time: <input type="time" name="time" value="{{event.time}}"></p>
             <input type="submit" value="Update">                    

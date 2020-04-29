@@ -86,6 +86,7 @@ def dashboard():
     posts = Post.query.all()
     events = Event.query.all()
     cur_user = User.query.filter_by(id=session['user_id'])
+    session['post_id'] = posts[0].id
     return render_template("dashboard.html", all_posts = posts, all_events = events,all_users = cur_user )
 
 def add_post():
@@ -101,14 +102,50 @@ def add_post():
             user_id = session['user_id'])
         db.session.add(new_post)
         db.session.commit()
+        session['post_id'] = posts[0].id
         return redirect("/dashboard")
     return redirect("/dashboard")
+
+def like_post(post_id):
+    if 'user_id' not in session:
+        return redirect("/")
+    curr_post = Post.query.get(post_id)
+    curr_user = User.query.get(session['user_id'])
+    curr_post.users_who_like_this_post.append(curr_user)
+    db.session.commit()
+    return redirect("/dashboard")
+
+
+
+def like_count(post_id):
+    if 'user_id' not in session:
+        return redirect("/")
+    this_post = Post.query.filter_by(id = int(post_id)).all()
+    return render_template("likes.html", all_posts = this_post)
+  
+
+
+    
+
+def delete_post(post_id):
+    if 'user_id' not in session:
+        return redirect("/")
+    print("hello?")
+    this_post = Post.query.filter_by(id = int(post_id)).first()
+    if this_post is not None:
+        print("delete")
+        db.session.delete(this_post)
+        db.session.commit()
+        flash("Post successfully deleted")
+        return redirect("/dashboard")
+    
+
 
 def events():
     if 'user_id' not in session:
         return redirect("/")
     events = Event.query.all()
-    session['event_id'] = events[0].id
+    # session['event_id'] = events[0].id
     return render_template("add_event.html", all_events = events)
 
 def add_event():
@@ -175,7 +212,7 @@ def delete_event(event_id):
 def edit_event(event_id):
     if 'user_id' not in session:
         return redirect("/")
-    this_event = Event.query.filter_by(id = int(event_id)).first()
+    this_event = Event.query.filter_by(id = int(event_id)).all()
     return render_template("edit_event.html", all_events = this_event)
 
 def update_event(event_id):

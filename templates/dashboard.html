@@ -41,6 +41,13 @@
                         <li>
                             <p><h5>{{post.user.first_name}} {{post.user.last_name}}</h5></p> 
                             <p>{{post.message}}</p>
+                            {% if session['user_id'] != post.user_id %}
+                            <a href="/like/post/{{post.id}}"><button>Like!</button></a>
+                            {% endif %}
+                            {% if session['user_id'] == post.user_id %}
+                            <a href="/delete/post/{{post.id}}"><button>Delete</button></a>
+                            {% endif %} 
+                            <a href="/like/count/{{post.id}}">likes</a>
                         </li>
                         {% endfor %}
                     </ul>
@@ -55,7 +62,7 @@
                             <p>on {{event.date}}</p>
                             <a href="/event/details/{{event.id}}"><button>Event Details</button></a>
                             {% if session['user_id'] == event.user_id %}
-                            <a href="/delete/{{event.id}}"><button>Delete</button></a>
+                            <a href="/delete/event/{{event.id}}"><button>Delete</button></a>
                             <a href="/edit/event/{{event.id}}"><button>Edit</button></a>
                             {% endif %}    
                         </li>
