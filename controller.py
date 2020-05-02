@@ -72,13 +72,26 @@ def login():
                 flash("Email and/or password do not match")
     return redirect("/")
 
-def user_profile():
+def my_profile():
     if 'user_id' not in session:
         return redirect("/")
     cur_user = User.query.filter_by(id=session['user_id'])
     post_history = Post.query.filter_by(user_id= session['user_id'])
     event_history = Event.query.filter_by(user_id = session['user_id'])
-    return render_template("user_profile.html", all_users = cur_user, all_posts = post_history, all_events = event_history)
+    return render_template("my_profile.html", all_users = cur_user, all_posts = post_history, all_events = event_history)
+
+def neighbors_profile(user_id):
+    if 'user_id' not in session:
+        return redirect("/")
+    user = User.query.filter_by(id = int(user_id)).all()
+    post_history = Post.query.filter_by(user_id = int(user_id))
+    event_history = Event.query.filter_by(user_id = int(user_id))
+    return render_template("neighbors_profile.html", all_users = user, all_posts = post_history, all_events = event_history)
+
+def view_profile(user_id):
+    if 'user_id' not in session:
+        return redirect("/")
+    
 
 def dashboard():
     if 'user_id' not in session:
@@ -101,14 +114,61 @@ def add_post():
             user_id = session['user_id'])
         db.session.add(new_post)
         db.session.commit()
+        # session['post_id'] = posts[0].id
         return redirect("/dashboard")
     return redirect("/dashboard")
+
+def add_like(post_id):
+    if 'user_id' not in session:
+        return redirect("/")
+    post = Post.query.get(post_id)
+    user = User.query.get(session['user_id'])
+    post.likes_rec.append(user)
+    db.session.commit()
+    return redirect("/dashboard")
+
+
+def post_details(post_id):
+    if 'user_id' not in session:
+        return redirect("/")
+    post = Post.query.get(post_id)
+    user = User.query.filter_by(id = post.user_id).all()
+    return render_template("post_details.html", post = post, all_users = user)
+  
+def update_post(post_id):
+    if 'user_id' not in session:
+        return redirect("/")
+    is_valid = True
+    if len(request.form['message']) < 2:
+        is_valid = False
+        flash("A message is required to edit post")
+    if is_valid:
+        this_post = Post.query.get(post_id)
+        if this_post is not None:
+            this_post.message = request.form['message']
+            db.session.commit()
+            
+        return redirect ("/post/details/{}".format(post_id))
+    return redirect ("/post/details/{}".format(post_id))
+       
+
+def delete_post(post_id):
+    if 'user_id' not in session:
+        return redirect("/")
+    print("hello?")
+    this_post = Post.query.filter_by(id = int(post_id)).first()
+    if this_post is not None:
+        print("delete")
+        db.session.delete(this_post)
+        db.session.commit()
+        flash("Post successfully deleted")
+        return redirect("/dashboard")
 
 def events():
     if 'user_id' not in session:
         return redirect("/")
     events = Event.query.all()
-    session['event_id'] = events[0].id
+    # session['event_id'] = events[0].id
     return render_template("add_event.html", all_events = events)
 
 def add_event():
@@ -172,11 +232,11 @@ def delete_event(event_id):
     return redirect("/dashboard")
 
 
-def edit_event(event_id):
-    if 'user_id' not in session:
-        return redirect("/")
-    this_event = Event.query.filter_by(id = int(event_id)).first()
-    return render_template("edit_event.html", all_events = this_event)
+# def edit_event(event_id):
+#     if 'user_id' not in session:
+#         return redirect("/")
+#     this_event = Event.query.filter_by(id = int(event_id)).all()
+#     return render_template("edit_event.html", all_events = this_event)
 
 def update_event(event_id):
     if 'user_id' not in session:
