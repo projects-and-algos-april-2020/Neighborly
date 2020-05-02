@@ -1,16 +1,15 @@
 * {
     margin: 0px;
-    padding: 5px 70px 0px 40px;
+    /* padding: 5px 70px 0px 40px; */
     /* outline: 1px solid pink; */
     
 }
 
 .container {
     width: 1000px;
-    height: 1000px;
     background-color: rgb(178, 204, 233);
     margin: 0px auto;
-    padding: 100px;
+    padding: 50px;
     border-radius: 20px;  
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;  
 }
@@ -47,104 +46,7 @@
         margin-top: 10px;
     }
 
-.user_info {
-    display: inline-block;
-    margin-left: 50px;
-    padding: 5px;
+.register {
+    margin-left: 150px;
+    margin-top: 25px;
 }
-
-    .user_info h2 {
-        color: white;
-        font-family: cursive;
-        padding: 10px;
-        margin-top: 5px;
-        margin-bottom: 10px;
-
-    }
-
-    .user_info ul {
-        display: inline-block;
-        vertical-align: top;
-        padding: 5px;
-    }
-
-    .user_info ul h3 {
-        color: white;
-        font-family: cursive;
-        display: inline-block
-    }
-
-    .user_info p {
-        font-style: italic;
-    }
-
-    .user_info li {
-        padding: 5px;
-    }
-
-.container_dashboard {
-        width: 800px;
-       
-        background-color: rgb(178, 204, 233);
-        margin: 0px auto;
-        padding: 25px;
-        border-radius: 20px;  
-        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;  
-    }
-    
-        .container_dashboard h1 {
-            font-family: cursive;
-            color: white;
-        }
-    
-        .container_dashboard li {
-            list-style: none;
-        }
-
-.dashboard {
-    padding: 20px;
-}
-    .dashboard h3 {
-        padding-bottom: 10px;
-        
-        color: white;
-    }
-
-    .dashboard form {
-    padding: 10px; 
-    }
-
-    .dashboard button {
-        vertical-align: bottom;
-        margin-top: 40px;
-        margin-left: 600px;
-    }
-
-
-.posts {
-    margin-top: 15px;
-    margin-bottom: 15px;
-
-}
-.posts li {
-    margin-top: 10px;
-}
-
-.posts li p {
-    display: inline-block;
-}
-
-.posts span {
-    font-style: italic;
-
-}
-
-.events {
-    margin-top: 15px;
-    margin-bottom: 15px;
-
-}
-    .events li {
-        margin-top: 15px;
-    }
-

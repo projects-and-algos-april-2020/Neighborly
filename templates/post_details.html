@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style1.css') }}">
+    <title>Post Details</title>
+</head>
+<body>
+    <div class="container_dashboard">
+        <h1>Neighborly</h1>
+        <div class="navigation">
+            <a href="/dashboard">Dashboard</a>
+            <a href="/my_profile">Profile</a>
+            <a href="/logout">Logout</a>
+        </div>
+        <div class="events">
+            <br>
+            <h4>Post #{{ post.id }}</h4>
+            <br>
+            <blockquote>
+                {{ post.message }}
+            </blockquote>
+            <br>
+            {% for user in all_users %}
+                <h5><a href="/neighbors/profile/{{user.id}}"> Post by: {{user.first_name}} {{ user.last_name }}</a></h5> 
+            {% endfor %}
+            <br>
+            <hr>
+            <br>
+            <h5>Liked by:</h5>
+            <ul>
+                {% for user in post.likes_rec %}
+                    <li>{{ user.first_name }} {{ user.last_name }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="events">
+            {% if session['user_id'] == post.user_id %} 
+                <h3>Edit your Post:</h3>
+                <form action="/update/post/{{post.id}}" method="POST">
+                    <label for="message">Your Post:</label>
+                    <textarea name="message" >{{ post.message }}</textarea>
+                    <input type="submit" value="Update">
+                </form>
+                <br>
+                <h3><a href="/delete/post/{{post.id}}"><button>Delete Post</button></a></h3>
+            {% endif %}
+            
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{message}}</p>
+                {% endfor %}
+            {% endif %}
+            {% endwith %} 
+        </div>
+    </div>
+</body>
+</html>
