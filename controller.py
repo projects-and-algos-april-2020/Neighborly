@@ -8,7 +8,7 @@ EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
 def index():
     print("*"*40)
-    return render_template("index.html")
+    return render_template("index2.html")
 
 def register():
     return render_template("register.html")

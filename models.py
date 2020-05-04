@@ -23,6 +23,7 @@ class User(db.Model):
     created_at = db.Column(db.DateTime, server_default = func.now())
     updated_at = db.Column(db.DateTime, server_default = func.now(), onupdate = func.now())
 
+    @property
     def full_name(self):
         return self.first_name + ' ' + self.last_name
 
@@ -37,6 +38,7 @@ class Address(db.Model):
     created_at = db.Column(db.DateTime, server_default = func.now())
     updated_at = db.Column(db.DateTime, server_default = func.now(), onupdate = func.now())
     
+    @property
     def full_address(self):
         return self.address + ' ' + self.city
 
@@ -96,6 +98,10 @@ class Event_location(db.Model):
     state = db.Column(db.String(20))
     created_at = db.Column(db.DateTime, server_default = func.now())
     updated_at = db.Column(db.DateTime, server_default = func.now(), onupdate = func.now())
+
+    @property
+    def full_address(self):
+        return self.address + ' ' + self.city 
 
 class Event_comment(db.Model):
     __tablename__ = "event_comments" 

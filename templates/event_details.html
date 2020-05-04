@@ -22,6 +22,7 @@
                     <p>{{event.title}}</p>
                     <p>{{event.description}}</p>
                     <h5>hosted by: <a href="/neighbors/profile/{{event.user.id}}"> hosted by: {{event.user.first_name}} {{event.user.last_name}}</a></h5>
+                    <p>At: {{event.location.full_address}}</p>
                     <p>On: {{event.date}} {{event.time}}</p>
                 </li>
                 {% endfor %}

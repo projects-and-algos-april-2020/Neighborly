@@ -3,12 +3,58 @@
     /* padding: 5px 70px 0px 40px; */
     /* outline: 1px solid pink; */
     
+    
 }
+
+/* CSS which you need for blurred box */
+body {
+ background-repeat: no-repeat;
+ background-attachment: fixed;
+ background-size: cover;
+ background-position: top;
+ background-image: url("clouds.png");
+ width: 100%;
+ height: 100%;
+ font-family: Arial, Helvetica;
+ letter-spacing: 0.02em;
+font-weight: 400;
+-webkit-font-smoothing: antialiased; 
+}
+
+
+.blurred-box{
+  position: relative;
+  width: 250px;
+  height: 350px;
+  top: calc(50% - 175px);
+  left: calc(50% - 125px);
+  background: inherit;
+  border-radius: 2px;
+  overflow: hidden;
+  padding-top: 20px;
+  color: white;
+}
+
+.blurred-box:after{
+ /* content: ''; */
+ width: 300px;
+ height: 300px;
+ background: inherit; 
+ position: absolute;
+ left: -25px;
+ left position
+ right: 0;
+ top: -25px;  
+ top position 
+ bottom: 0;
+ box-shadow: inset 0 0 0 200px rgba(255,255,255, 0.15);
+ filter: blur(10px);
+} 
 
 .container {
     width: 1000px;
-    background-color: rgb(178, 204, 233);
-    margin: 0px auto;
+    /* background-color: rgb(178, 204, 233); */
+    margin: 50px auto;
     padding: 50px;
     border-radius: 20px;  
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;  
@@ -21,15 +67,24 @@
 
     .container li {
         list-style: none;
+        
     }
 
+    .container h4 {
+        color: white
+        
+    }
+
+
 .login_page {
+    position: relative;
     display: inline-block;
     vertical-align: top;
     margin-left: 100px;
     font-size: larger;
     margin-top: 25px;
     padding: 5px;
+    z-index: 1;
 }
 
     .login_page p {
@@ -37,16 +92,23 @@
         
     }
 
-    .login_page h4 {
-        padding-bottom: 10px;
-        margin-left: 40px;
-    }
-
     .login_page a {
         margin-top: 10px;
+        color:rgb(64, 11, 255);
+
     }
+
+
 
 .register {
     margin-left: 150px;
     margin-top: 25px;
+    color: white;
+    
 }
+
+
+    .form-group a {
+        color: rgb(64, 11, 255)
+
+    }
