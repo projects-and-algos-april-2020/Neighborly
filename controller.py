@@ -25,7 +25,9 @@ def add_user():
     if len(request.form['city'])<2:
         flash("City must be at least 2 characters")
     if len(request.form['state'])<2:
-        flash("State initials required, 2 characters")   
+        flash("State initials required, 2 characters")
+    if len(request.form['zipcode'])<5:
+        flash("Zipcode required, 5 numbers")     
     if len(request.form['password']) < 5:
         flash("password isn't long enough")
     if request.form['password'] != request.form['cpassword']:
@@ -34,7 +36,8 @@ def add_user():
         new_address = Address(
             address=request.form['address'], 
             city=request.form['city'],
-            state = request.form['state']) 
+            state = request.form['state'],
+            zipcode = request.form['zipcode']) 
         db.session.add(new_address)
         db.session.commit()
         new_user = User(
@@ -59,7 +62,6 @@ def login():
     if len(request.form['password']) < 1:
         is_valid = False
         flash("Password is required")
-
     if is_valid:
         user = User.query.filter_by(email=request.form['email']).all()
         if user:
@@ -75,10 +77,23 @@ def login():
 def my_profile():
     if 'user_id' not in session:
         return redirect("/")
-    cur_user = User.query.filter_by(id=session['user_id'])
+    user = User.query.filter_by(id=session['user_id'])
     post_history = Post.query.filter_by(user_id= session['user_id'])
     event_history = Event.query.filter_by(user_id = session['user_id'])
-    return render_template("my_profile.html", all_users = cur_user, all_posts = post_history, all_events = event_history)
+    return render_template("my_profile.html", all_users = user, all_posts = post_history, all_events = event_history)
+
+def delete_user(user_id):
+    if 'user_id' not in session:
+        return redirect("/")
+    this_user = User.query.filter_by(id = int(user_id)).first()
+    if this_user is not None:
+        print("delete")
+        db.session.delete(this_user)
+        db.session.commit()
+        flash("User successfully deleted")
+        return redirect("/register")
+    return redirect("/my_profile")
+
 
 def neighbors_profile(user_id):
     if 'user_id' not in session:
@@ -88,9 +103,6 @@ def neighbors_profile(user_id):
     event_history = Event.query.filter_by(user_id = int(user_id))
     return render_template("neighbors_profile.html", all_users = user, all_posts = post_history, all_events = event_history)
 
-def view_profile(user_id):
-    if 'user_id' not in session:
-        return redirect("/")
     
 
 def dashboard():
@@ -114,7 +126,6 @@ def add_post():
             user_id = session['user_id'])
         db.session.add(new_post)
         db.session.commit()
-        # session['post_id'] = posts[0].id
         return redirect("/dashboard")
     return redirect("/dashboard")
 
@@ -133,7 +144,8 @@ def post_details(post_id):
         return redirect("/")
     post = Post.query.get(post_id)
     user = User.query.filter_by(id = post.user_id).all()
-    return render_template("post_details.html", post = post, all_users = user)
+    comment = Post_comment.query.filter_by(post_id = int(post_id)).all()
+    return render_template("post_details.html", post = post, all_users = user, all_comments = comment)
   
 def update_post(post_id):
     if 'user_id' not in session:
@@ -164,11 +176,28 @@ def delete_post(post_id):
         flash("Post successfully deleted")
         return redirect("/dashboard")
 
+def add_post_comments(post_id):
+    if 'user_id' not in session:
+        return redirect("/")
+    is_valid = True
+    if len(request.form['message']) < 2:
+        is_valid = False
+        flash("A message is required to post")
+    if is_valid:
+        new_message = Post_comment(
+            message = request.form['message'],
+            user_id = session['user_id'],
+            post_id = int(post_id))
+        db.session.add(new_message)
+        db.session.commit() 
+        return redirect ("/post/details/{}".format(post_id))
+    return redirect("/dashboard")          
+
+
 def events():
     if 'user_id' not in session:
         return redirect("/")
     events = Event.query.all()
-    # session['event_id'] = events[0].id
     return render_template("add_event.html", all_events = events)
 
 def add_event():
@@ -262,8 +291,8 @@ def update_event(event_id):
             this_event.date = request.form['date']
             this_event.time = request.form['time']
             db.session.commit()
-            return redirect("/events")
-        return redirect("/events")
+            return redirect("/dashboard")
+        return redirect("/edit/event/{}".format(event_id))
     return redirect ("/edit/event/{}".format(event_id))
 
 def event_details(event_id):

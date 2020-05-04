@@ -42,12 +42,14 @@
         {% endif %}
         {% endwith %}
         <hr>
+        <h4>Comments:</h4>
         <ul>
             {% for comment in all_comments %}
-            <li>{{comment.user.first_name}} wrote:</li>
-            <li>{{comment.message}}</li>
+            <li>{{comment.user.first_name}} wrote: {{comment.message}}</li>
             {% endfor %}
         </ul>
+        <br>
+        <hr>
         <div class="events">
             {% for event in all_events %}
                 {% if session['user_id'] == event.user_id %}
@@ -60,6 +62,7 @@
                         <input type="submit" value="Update">                    
                     </form>
                     <br>
+                    <hr>
                     <h3><a href="/delete/event/{{event.id}}"><button>Delete Event</button></a></h3>
                 {% endif %}
             {% endfor %}
