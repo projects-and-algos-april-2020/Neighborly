@@ -15,33 +15,35 @@
             <a href="/logout">Logout</a>
         </div>
         <div class="user_info">
-            {% for cur_user in all_users %}
-            <h2>{{cur_user.first_name}}'s Profile</h2>
+            {% for user in all_users %}
+                <h2>{{user.first_name}}'s Profile</h2>
+                <ul>
+                    <li>{{user.first_name}} {{user.last_name}}
+                        <p>{{user.email}}</p> 
+                    </li>
+                    <li>
+                        {% if session['user_id'] == user.id %}
+                            <a href="/delete/account/{{user.id}}">Delete My Account</a>
+                        {% endif %}
+                    </li>
+                </ul> 
             {% endfor %}
-            <ul>
-                {% for cur_user in all_users %}
-                <li>{{cur_user.first_name}} {{cur_user.last_name}}
-                    <p>{{cur_user.email}}</p> 
-                </li>
-                {% endfor %}
-            </ul> 
         </div>
         <div class="user_info"> 
             <ul>
                 {% for history in all_posts %}
                     <li><h3>Posts</h3></li>
-                    <li>~{{history.message}}
+                    <li>{{history.message}}
                         <p>posted: {{history.created_at}} </p>
                     </li>
                 {% endfor %} 
 
                 {% for history in all_events %}
                     <li><h3>Events</h3></li>
-                    <li>~{{history.title}}
+                    <li>{{history.title}}
                         <p>posted: {{history.created_at}}</p>
                     </li>
-                {% endfor %} 
-                    
+                {% endfor %}     
             </ul>
         </div>
     </div>

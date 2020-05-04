@@ -15,13 +15,14 @@
             <a href="/logout">Logout</a>
             
         </div>
-        <div class="events">  
+        <div class="posts">  
             <ul>
                 {% for event in all_events %}
                 <li>
                     <p>{{event.title}}</p>
                     <p>{{event.description}}</p>
                     <h5>hosted by: <a href="/neighbors/profile/{{event.user.id}}"> hosted by: {{event.user.first_name}} {{event.user.last_name}}</a></h5>
+                    <p>At: {{event.location.full_address}}</p>
                     <p>On: {{event.date}} {{event.time}}</p>
                 </li>
                 {% endfor %}
@@ -30,7 +31,7 @@
         </div>
         {% for event in all_events %}
         <form action="/add/event_comment/{{event.id}}", method="POST">
-            <p><textarea name="message" placeholder="Add a message"></textarea></p>
+            <p><textarea name="message"  cols="45" rows="3" placeholder="Add a message"></textarea></p>
             <input type="submit" value="Post">
         </form>
         {% endfor %}
@@ -42,24 +43,25 @@
         {% endif %}
         {% endwith %}
         <hr>
+        <h4>Comments:</h4>
         <ul>
             {% for comment in all_comments %}
-            <li>{{comment.user.first_name}} wrote:</li>
-            <li>{{comment.message}}</li>
+            <li>{{comment.user.first_name}} wrote: {{comment.message}}</li>
             {% endfor %}
         </ul>
-        <div class="events">
+        <hr>
+        <div class="posts">
             {% for event in all_events %}
                 {% if session['user_id'] == event.user_id %}
                     <h3>Edit your event: </h3>
                     <form action="/update/event/{{event.id}}" method="POST">
-                        <p>Title: <input type="text" name="title" value="{{event.title}}"></p>
-                        <p>Description: <textarea name="description">{{ event.description }}</textarea></p>
+                        <p>Title: <input type="text" name="title" placeholder="{{event.title}}"</p>
+                        <p>Description: <textarea name="description" placeholder="{{ event.description }}"></textarea></p>
                         <p>Date: <input type="date" name="date" value="{{event.date}}"></p>
                         <p>Time: <input type="time" name="time" value="{{event.time}}"></p>
                         <input type="submit" value="Update">                    
                     </form>
-                    <br>
+                    <hr>
                     <h3><a href="/delete/event/{{event.id}}"><button>Delete Event</button></a></h3>
                 {% endif %}
             {% endfor %}

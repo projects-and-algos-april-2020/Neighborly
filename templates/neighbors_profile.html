@@ -18,11 +18,9 @@
             {% for user in all_users %}
                 <h2>{{user.first_name}}'s Profile</h2>
                 <ul>
-
                     <li>{{user.first_name}} {{user.last_name}}
                         <p>{{user.email}}</p> 
-                    </li>
-                    
+                    </li> 
                 </ul> 
             {% endfor %}
         </div>
@@ -30,7 +28,7 @@
             <ul>
                 <li><h3>Posts</h3></li>
                 {% for history in all_posts %}
-                    <li>~{{history.message}}
+                    <li>{{history.message}}
                         <p>posted: {{history.created_at}} </p>
                     </li>
                 {% endfor %} 
