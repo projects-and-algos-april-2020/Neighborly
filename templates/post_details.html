@@ -14,28 +14,20 @@
             <a href="/my_profile">Profile</a>
             <a href="/logout">Logout</a>
         </div>
-        <div class="events">
-            <br>
-            <h4>{{post.user.first_name}} wrote:</h4>
-            <br>
+        <div class="post-details">
+            {% for user in all_users %}
+                <h4><a href="/neighbors/profile/{{user.id}}"> {{user.full_name}} wrote:</a></h4> 
+            {% endfor %}
             <blockquote>
                 {{ post.message }}
             </blockquote>
-            <br>
-            {% for user in all_users %}
-                <h4><a href="/neighbors/profile/{{user.id}}"> Post by: {{user.first_name}} {{ user.last_name }}</a></h4> 
-            {% endfor %}
-            <br>
             <hr>
-            <br>
             <h5>Liked by:</h5>
             <ul>
                 {% for user in post.likes_rec %}
                     <li>{{ user.first_name }} {{ user.last_name }}</li>
                 {% endfor %}
             </ul>
-            <br>
-            <br>
             <h5>Comments:</h5>
             <ul>
                 {% for comment in all_comments %}
@@ -45,19 +37,18 @@
         </div>
         <hr>
         <form action="/add/post_comment/{{post.id}}", method="POST">
-            <p><textarea name="message" placeholder="Add a comment"></textarea></p>
+            <p><textarea name="message"  cols="45" rows="3" placeholder="Add a comment"></textarea></p>
             <input type="submit" value="Post">
         </form>
         <hr>
-        <br>
-        <div class="events">
+        
+        <div class="posts">
             {% if session['user_id'] == post.user_id %} 
                 <h5>Edit your Post:</h5>
                 <form action="/update/post/{{post.id}}" method="POST">
-                    <textarea name="message" >{{ post.message }}</textarea>
+                    <textarea name="message" placeholder="{{ post.message }}" ></textarea>
                     <input type="submit" value="Update">
                 </form>
-                <br>
                 <hr>
                 <h3><a href="/delete/post/{{post.id}}"><button>Delete Post</button></a></h3>
             {% endif %}

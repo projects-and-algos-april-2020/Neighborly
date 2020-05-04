@@ -15,7 +15,7 @@
             <a href="/logout">Logout</a>
             
         </div>
-        <div class="events">  
+        <div class="posts">  
             <ul>
                 {% for event in all_events %}
                 <li>
@@ -31,7 +31,7 @@
         </div>
         {% for event in all_events %}
         <form action="/add/event_comment/{{event.id}}", method="POST">
-            <p><textarea name="message" placeholder="Add a message"></textarea></p>
+            <p><textarea name="message"  cols="45" rows="3" placeholder="Add a message"></textarea></p>
             <input type="submit" value="Post">
         </form>
         {% endfor %}
@@ -49,20 +49,18 @@
             <li>{{comment.user.first_name}} wrote: {{comment.message}}</li>
             {% endfor %}
         </ul>
-        <br>
         <hr>
-        <div class="events">
+        <div class="posts">
             {% for event in all_events %}
                 {% if session['user_id'] == event.user_id %}
                     <h3>Edit your event: </h3>
                     <form action="/update/event/{{event.id}}" method="POST">
-                        <p>Title: <input type="text" name="title" value="{{event.title}}"></p>
-                        <p>Description: <textarea name="description">{{ event.description }}</textarea></p>
+                        <p>Title: <input type="text" name="title" placeholder="{{event.title}}"</p>
+                        <p>Description: <textarea name="description" placeholder="{{ event.description }}"></textarea></p>
                         <p>Date: <input type="date" name="date" value="{{event.date}}"></p>
                         <p>Time: <input type="time" name="time" value="{{event.time}}"></p>
                         <input type="submit" value="Update">                    
                     </form>
-                    <br>
                     <hr>
                     <h3><a href="/delete/event/{{event.id}}"><button>Delete Event</button></a></h3>
                 {% endif %}
