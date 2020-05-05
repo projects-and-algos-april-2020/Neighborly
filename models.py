@@ -18,9 +18,12 @@ class User(db.Model):
     likes_sent = db.relationship('Post', secondary=likes_table, passive_deletes=True)
     all_post = db.relationship('Post', back_populates="user", cascade="all, delete, delete-orphan")
     all_event = db.relationship('Event', back_populates="user", cascade="all, delete, delete-orphan")
+    post_comments = db.relationship('Post_comment', back_populates="user", cascade="all, delete, delete-orphan")
+    event_comments = db.relationship('Event_comment', back_populates="user", cascade="all, delete, delete-orphan")
     created_at = db.Column(db.DateTime, server_default = func.now())
     updated_at = db.Column(db.DateTime, server_default = func.now(), onupdate = func.now())
 
+    @property
     def full_name(self):
         return self.first_name + ' ' + self.last_name
 
@@ -35,6 +38,7 @@ class Address(db.Model):
     created_at = db.Column(db.DateTime, server_default = func.now())
     updated_at = db.Column(db.DateTime, server_default = func.now(), onupdate = func.now())
     
+    @property
     def full_address(self):
         return self.address + ' ' + self.city
 
@@ -45,13 +49,17 @@ class Post(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete='cascade'))
     user = db.relationship('User', foreign_keys=[user_id])
     likes_rec = db.relationship('User', secondary=likes_table, passive_deletes=True)
-    all_post = db.relationship('Post_comment', back_populates="post", cascade="all, delete, delete-orphan")
+    all_comment = db.relationship('Post_comment', back_populates="post", cascade="all, delete, delete-orphan")
     created_at = db.Column(db.DateTime, server_default = func.now())
     updated_at = db.Column(db.DateTime, server_default = func.now(), onupdate = func.now())
 
     @property
     def num_likes(self):
         return len(self.likes_rec)
+
+    @property
+    def num_comments(self):
+        return len(self.all_comment)
 
 class Post_comment(db.Model):
     __tablename__ = "post_comments" 
@@ -63,6 +71,7 @@ class Post_comment(db.Model):
     user = db.relationship('User', foreign_keys=[user_id])
     created_at = db.Column(db.DateTime, server_default = func.now())
     updated_at = db.Column(db.DateTime, server_default = func.now(), onupdate = func.now())
+
 
 
 class Event(db.Model):
@@ -89,6 +98,10 @@ class Event_location(db.Model):
     state = db.Column(db.String(20))
     created_at = db.Column(db.DateTime, server_default = func.now())
     updated_at = db.Column(db.DateTime, server_default = func.now(), onupdate = func.now())
+
+    @property
+    def full_address(self):
+        return self.address + ' ' + self.city 
 
 class Event_comment(db.Model):
     __tablename__ = "event_comments" 

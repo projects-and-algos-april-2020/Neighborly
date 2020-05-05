@@ -1,5 +1,5 @@
 from config import app
-from controller import index, add_user, login, logout, register, my_profile, dashboard, add_post, events, add_event, event_details, add_event_comments, update_event, delete_event, delete_post, add_like, post_details, update_post, neighbors_profile
+from controller import index, add_user, login, logout, register, my_profile, dashboard, add_post, events, add_event, event_details, add_event_comments, update_event, delete_event, delete_post, add_like, post_details, update_post, neighbors_profile, add_post_comments, delete_user
 
 
 app.add_url_rule("/", view_func=index)
@@ -22,3 +22,5 @@ app.add_url_rule("/add/like/<post_id>", view_func=add_like)
 app.add_url_rule("/post/details/<post_id>", view_func=post_details)
 app.add_url_rule("/update/post/<post_id>", view_func=update_post, methods=['POST'])
 app.add_url_rule("/neighbors/profile/<user_id>", view_func=neighbors_profile)
+app.add_url_rule("/add/post_comment/<post_id>", view_func=add_post_comments, methods=['POST'])
+app.add_url_rule("/delete/account/<user_id>", view_func=delete_user)

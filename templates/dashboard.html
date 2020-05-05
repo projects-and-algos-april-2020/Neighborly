@@ -20,7 +20,7 @@
             {% endfor %}
             <hr>
             <form action="/add/post" method="POST">
-                <p> <textarea name="message" placeholder="Write a post here"></textarea></p>
+                <p> <textarea name="message" cols="45" rows="3" placeholder="Write a post here"></textarea></p>
                 <input type="submit" value="Post">
             </form>
             {% with messages = get_flashed_messages() %}
@@ -33,43 +33,35 @@
             <hr>            
             <a href="/events"><button>Add an Event</button></a>
             <hr>
-            <div class="dashboard_content">
-                <div class="events">
-                    <h3>Posts</h3>
-                    <ul>
-                        {% for post in all_posts %}
-                        <li>
-                            
-                            <h4><a href="post/details/{{post.id}}">{{post.message}}</a></h4>
-                            <p>~ {{post.user.first_name}} {{post.user.last_name}}</p> 
-                            <p>Likes: {{ post.num_likes }} <p>
-                            {% if session['user_id'] != post.user_id %}
-                                <a href="/add/like/{{post.id}}"><button>Like!</button></a>
-                            {% endif %}
-                            <!-- {% if session['user_id'] == post.user_id %} -->
-                                <!-- <a href="/delete/post/{{post.id}}"><button>Delete</button></a> -->
-                            <!-- {% endif %}  -->
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-                <div class="events">
-                    <h3>Events</h3>
-                    <ul>
-                        {% for event in all_events %}
-                        <li>
-                            <h4><a href="/event/details/{{event.id}}">{{event.title}}</a></h4>
-                            <p>host: {{event.user.first_name}} {{event.user.last_name}}</p>
-                            <p>on: {{event.date}}</p>
-                            <!-- {% if session['user_id'] == event.user_id %}
-                                <a href="/delete/event/{{event.id}}"><button>Delete</button></a>
-                                <!-- <a href="/edit/event/{{event.id}}"><button>Edit</button></a> -->
-                            <!-- {% endif %}     --> 
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </div>
+            <div class="posts">
+                <h3>Posts</h3>
+                <ul>
+                    {% for post in all_posts %}
+                    <li>
+                        <p>{{post.user.full_name}} says:</p> 
+                        <blockquote><a href="post/details/{{post.id}}">{{post.message}}</a></blockquote>
+                        <p>Likes: {{ post.num_likes }} </p> 
+                        <p>Comments: {{ post.num_comments }} </p>
+                        
+                        {% if session['user_id'] != post.user_id %}
+                            <a href="/add/like/{{post.id}}"><button>Like!</button></a>
+                        {% endif %}
+                    </li>
+                    {% endfor %}
+                </ul>
             </div>
+            <div class="events">
+                <h3>Events</h3>
+                <ul>
+                    {% for event in all_events %}
+                    <li>
+                        <h4><a href="/event/details/{{event.id}}">{{event.title}}</a></h4>
+                        <p>host: {{event.user.first_name}} {{event.user.last_name}}</p>
+                        <p>on: {{event.date}}</p>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>   
         </div>
     </div>
 </body>
