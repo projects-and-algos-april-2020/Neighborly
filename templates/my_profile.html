@@ -21,6 +21,7 @@
                     <li>{{user.first_name}} {{user.last_name}}
                         <p>{{user.email}}</p> 
                     </li>
+                                <a href="/upload_form">Add Picture</a>
                     <li>
                         {% if session['user_id'] == user.id %}
                             <a href="/delete/account/{{user.id}}">Delete My Account</a>
