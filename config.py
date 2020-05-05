@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_bcrypt import Bcrypt
 import urllib.request
-UPLOAD_FOLDER = '.static/img/'
+UPLOAD_FOLDER = 'C:\\Users\\traubhome\\Desktop\\Coding_Dojo\\Projects and Algorithms\\Neighborly\\static\\'
 
 
 app = Flask(__name__)
