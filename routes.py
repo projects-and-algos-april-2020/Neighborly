@@ -1,5 +1,5 @@
 from config import app
-from controller import index, add_user, login, logout, register, my_profile, dashboard, add_post, events, add_event, event_details, add_event_comments, update_event, delete_event, delete_post, add_like, post_details, update_post, neighbors_profile, add_post_comments, delete_user
+from controller import index, add_user, login, logout, register, my_profile, dashboard, add_post, events, add_event, event_details, add_event_comments, update_event, delete_event, delete_post, add_like, post_details, update_post, neighbors_profile, add_post_comments, delete_user, upload_form, upload_file
 
 
 app.add_url_rule("/", view_func=index)
@@ -8,6 +8,8 @@ app.add_url_rule("/process/user", view_func=add_user, methods=['POST'])
 app.add_url_rule("/login", view_func=login, methods=['POST'])
 app.add_url_rule("/logout", view_func=logout)
 app.add_url_rule("/my_profile", view_func=my_profile)
+app.add_url_rule("/upload_form", view_func=upload_form)
+app.add_url_rule("/upload_file", view_func=upload_file, methods=['POST'])
 app.add_url_rule("/dashboard", view_func=dashboard)
 app.add_url_rule("/add/post", view_func=add_post, methods=['POST'])
 app.add_url_rule("/events", view_func=events)

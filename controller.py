@@ -1,10 +1,19 @@
-from flask import render_template, request, redirect, session, flash
+from flask import render_template, request, redirect, session, flash, url_for
 from config import app, db, bcrypt
 from models import User, Address, Post, Post_comment, Event, Event_location, Event_comment, likes_table
 from datetime import date, time
 import re
-
+import os
+import urllib.request
+from app import app
+from werkzeug.utils import secure_filename
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
+ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 def index():
     print("*"*40)
@@ -12,6 +21,28 @@ def index():
 
 def register():
     return render_template("register.html")
+
+def upload_form():
+	return render_template("upload.html")
+
+def upload_file():
+	if request.method == 'POST':
+            # check if the post request has the file part
+		if 'file' not in request.files:
+			flash('No file part')
+			return redirect(request.url)
+		file = request.files['file']
+		if file.filename == '':
+			flash('No file selected for uploading')
+			return redirect(request.url)
+		if file and allowed_file(file.filename):
+			filename = secure_filename(file.filename)
+			file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+			flash('File successfully uploaded')
+			return redirect('/my_profile')
+		else:
+			flash('Allowed file types are txt, pdf, png, jpg, jpeg, gif')
+			return redirect(request.url)
 
 def add_user():
     if len(request.form['fname'])<2:
