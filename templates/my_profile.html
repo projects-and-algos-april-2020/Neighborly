@@ -33,15 +33,14 @@
         </div>
         <div class="user_info"> 
             <ul>
+                <li><h3>Posts</h3></li>
                 {% for history in all_posts %}
-                    <li><h3>Posts</h3></li>
                     <li>{{history.message}}
                         <p>posted: {{history.created_at}} </p>
                     </li>
                 {% endfor %} 
-
+                <li><h3>Events</h3></li>
                 {% for history in all_events %}
-                    <li><h3>Events</h3></li>
                     <li>{{history.title}}
                         <p>posted: {{history.created_at}}</p>
                     </li>
