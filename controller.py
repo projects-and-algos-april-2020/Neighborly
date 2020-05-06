@@ -17,7 +17,7 @@ def allowed_file(filename):
 
 def index():
     print("*"*40)
-    return render_template("index2.html")
+    return render_template("login.html")
 
 def register():
     return render_template("register.html")
