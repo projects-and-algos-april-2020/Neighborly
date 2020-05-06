@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style_profile.css') }}">
+    <title>All Neighbors</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Neighborly</h1>
+        <div class="navigation">
+            <a href="/dashboard">Dashboard</a>
+            <a href="/my_profile">My Profile</a>
+            <a href="/logout">Logout</a>
+        </div>
+        <div class="all_users">
+            <table>
+                <thead>
+                    <th>
+                        <tr>Name:</tr>
+                        <tr>Total Posts:</tr>
+                        <tr>Total Events:</tr>
+                    </th>
+                </thead>
+                <tbody>
+                    {% for user in all_users %}
+                    <th>
+                        <td>{{user.full_name}}</td>
+                        <td></td>
+                        <td></td>
+                    </th>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
