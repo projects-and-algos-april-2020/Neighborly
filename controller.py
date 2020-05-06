@@ -113,6 +113,12 @@ def my_profile():
     event_history = Event.query.filter_by(user_id = session['user_id'])
     return render_template("my_profile.html", all_users = user, all_posts = post_history, all_events = event_history)
 
+def all_users():
+    if 'user_id' not in session:
+        return redirect("/")
+    users = User.query.all()
+    return render_template("all_neighbors.html", all_users = users)
+
 def delete_user(user_id):
     if 'user_id' not in session:
         return redirect("/")
