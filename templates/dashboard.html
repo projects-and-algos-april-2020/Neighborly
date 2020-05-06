@@ -40,7 +40,7 @@
                 {% for post in all_posts %}
                 <li>
                     <p>{{post.user.full_name}} says:</p> 
-                    <blockquote><a href="post/details/{{post.id}}">{{post.message}}</a></blockquote>
+                    <blockquote><a href="/post/details/{{post.id}}">{{post.message}}</a></blockquote>
                     <p>Likes: {{ post.num_likes }} </p> 
                     <p>Comments: {{ post.num_comments }} </p>
                     
@@ -56,7 +56,7 @@
             <ul>
                 {% for event in all_events %}
                 <li>
-                    <h4><a href="/event/details/{{event.id}}">{{event.title}}</a></h4>
+                    <p><a href="/event/details/{{event.id}}">{{event.title}}</a></p>
                     <p>host: {{event.user.first_name}} {{event.user.last_name}}</p>
                     <p>on: {{event.date}}</p>
                 </li>

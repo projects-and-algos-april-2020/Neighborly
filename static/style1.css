@@ -24,10 +24,9 @@ body {
 
 .container {
     width: 800px;
-    height: 600px;
     background-color: rgb(178, 204, 233);
     margin: 50px auto;
-    padding: 25px;
+    padding: 30px;
     border-radius: 20px;  
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;  
 }
@@ -56,6 +55,7 @@ body {
 .user_info {
     display: inline-block;
     margin-left: 50px;
+    margin-bottom: 30px;
     padding: 5px;
 }
 
@@ -83,6 +83,11 @@ body {
 
     .user_info li {
         padding: 5px;
+        
+    }
+
+    .user_info a {
+        text-decoration: none;
     }
 
 .container_dashboard {
@@ -140,7 +145,7 @@ body {
 
     .events {
         /* margin-top: 15px; */
-        margin-bottom: 15px;
+        margin-bottom: 30px;
         display: inline-block;
         width: 200px;
         vertical-align: top;
@@ -166,6 +171,14 @@ body {
             padding: 3px;
         }
 
+        .events h3 {
+            color: white;
+        }
+
+        .events a {
+            text-decoration: none;
+        }
+
 
 
 :placeholder-shown {
@@ -177,7 +190,7 @@ body {
 
     .posts {
         /* margin-top: 15px; */
-        margin-bottom: 15px;
+        margin-bottom: 30px;
         display: inline-block;
         width: 350px;
         vertical-align: top;
@@ -214,6 +227,10 @@ body {
         }
         .posts blockquote {
             padding: 8px;
+        }
+
+        .posts h3 {
+            color: white;
         }
 
 
