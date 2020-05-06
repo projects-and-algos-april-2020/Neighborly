@@ -28,6 +28,13 @@ class User(db.Model):
     def full_name(self):
         return self.first_name + ' ' + self.last_name
 
+    @property
+    def num_posts(self):
+        return len(self.all_post)
+
+    @property
+    def num_events(self):
+        return len(self.all_event)
 
 class Address(db.Model):
     __tablename__ = "addresses" 

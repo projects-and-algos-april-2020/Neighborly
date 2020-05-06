@@ -41,7 +41,7 @@ body {
     }
 
 .navigation {
-    margin-left: 525px;
+    margin-left: 400px;
     border-radius: 2px;
     color: white;
     text-shadow: 1px 1px 1px white
@@ -57,6 +57,7 @@ body {
     margin-left: 50px;
     margin-bottom: 30px;
     padding: 5px;
+    width: 300px;
 }
 
     .user_info h2 {
@@ -83,9 +84,34 @@ body {
 
     .user_info li {
         padding: 5px;
+       
         
     }
 
     .user_info a {
         text-decoration: none;
     }
+
+.neighbors {
+    text-align: center;
+    margin-top: 15px;
+    
+} 
+
+ .neighbors table {
+    outline: 1px solid pink; 
+} 
+ .neighbors tr {
+    outline: 1px solid pink; 
+}
+
+.neighbors th {
+    outline: 1px solid pink; 
+    padding: 5px;
+
+}
+
+.neighbors td {
+    outline: 1px solid pink; 
+    padding: 5px;
+}
