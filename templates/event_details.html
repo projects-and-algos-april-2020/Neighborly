@@ -18,7 +18,7 @@
         <div class="eventpost">  
             <ul>
                 {% for event in all_events %}
-                <h4>{{event.title}} details!</h4>
+                <h4>{{event.title}} <span>details:</span></h4>
                 <li>
                     <blockquote>{{event.description}}</blockquote> <br>
                     <p><h5>Where:</h5>{{event.location.full_address}}</p>
@@ -29,7 +29,7 @@
             </ul>
 
         </div>
-        <div class="eventcomment">
+        <div class="addcomment">
             {% for event in all_events %}
                 <form action="/add/event_comment/{{event.id}}", method="POST">
                     <p><textarea name="message"  cols="45" rows="3" placeholder="Add a message"></textarea></p>

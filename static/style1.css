@@ -52,102 +52,12 @@ body {
         text-decoration: none;
     }
 
-.user_info {
-    display: inline-block;
-    margin-left: 50px;
-    margin-bottom: 30px;
-    padding: 5px;
-}
-
-    .user_info h2 {
-        color: white;
-        font-family: cursive;
-        padding: 10px;
-        margin-top: 5px;
-        margin-bottom: 10px;
-
-    }
-
-    .user_info ul {
-        display: inline-block;
-        vertical-align: top;
-        padding: 5px;
-    }
-
-    .user_info ul h3 {
-        color: white;
-        font-family: cursive;
-        display: inline-block
-    }
-
-
-    .user_info li {
-        padding: 5px;
-        
-    }
-
-    .user_info a {
-        text-decoration: none;
-    }
-
-.container_dashboard {
-        width: 800px;
-        
-        background-color: rgb(178, 204, 233);
-        margin: 50px auto;
-        padding: 25px;
-        border-radius: 20px;  
-        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;  
-    }
-    
-        .container_dashboard h1 {
-            font-family: cursive;
-            color: white;
-        }
-    
-        .container_dashboard li {
-            list-style: none;
-        }
-
-.dashboard {
-    padding: 20px;
-}
-    .dashboard h3 {
-        padding-bottom: 5px;
-        color: white;
-    }
-
-    .dashboard form {
-    padding: 10px; 
-    }
-
-    .dashboard form input {
-        border-radius: 5px;
-        padding: 3px;
-    }
-
-    .dashboard button {
-        vertical-align: bottom;
-        border-radius: 5px;
-        padding: 3px;
-
-    }
-
-    .dashboard textarea {
-        border-radius: 5px;
-        padding: 3px;
-    }
-
-    .dashboard button {
-        margin-left: 575px;
-    }
-
 
     .events {
         /* margin-top: 15px; */
         margin-bottom: 30px;
         display: inline-block;
-        width: 200px;
+        width: 270px;
         vertical-align: top;
         margin-left: 85px;
         
@@ -157,7 +67,7 @@ body {
             margin-top: 15px;
             margin-bottom: 30px;
                         
-            padding: 5px;
+            padding: 10px;
             background-color: rgba(255, 255, 255, 0.267);
             border-radius: 10px;
         }
@@ -186,8 +96,6 @@ body {
 }
 
 
-
-
     .posts {
         /* margin-top: 15px; */
         margin-bottom: 30px;
@@ -202,7 +110,7 @@ body {
             margin-bottom: 30px;
             /* outline: 1px solid pink; */
             
-            padding: 5px;
+            padding: 10px;
             background-color: rgba(255, 255, 255, 0.267);
             border-radius: 10px;
         }
