@@ -1,0 +1,174 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    /* outline: 1px solid pink; */
+}
+
+
+body {
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: top;
+    background-image: url("clouds.png");
+    width: 100%;
+    height: 100%;
+    font-family: Arial, Helvetica;
+    letter-spacing: 0.02em;
+    font-weight: 400;
+   -webkit-font-smoothing: antialiased; 
+   }
+
+
+.container_dashboard {
+        width: 800px;
+        
+        background-color: rgb(178, 204, 233);
+        margin: 50px auto;
+        padding: 25px;
+        border-radius: 20px;  
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;  
+    }
+    
+        .container_dashboard h1 {
+            font-family: cursive;
+            color: white;
+        }
+    
+        .container_dashboard li {
+            list-style: none;
+        }
+
+.navigation {
+    margin-left: 525px;
+    border-radius: 2px;
+    color: white;
+    text-shadow: 1px 1px 1px white
+}
+
+    .navigation a {
+        padding: 3px;
+        text-decoration: none;
+    }
+
+.dashboard {
+    padding: 20px;
+}
+    .dashboard h3 {
+        padding-bottom: 5px;
+        color: white;
+    }
+
+    .dashboard form {
+    padding: 10px; 
+    }
+
+    .dashboard form input {
+        border-radius: 5px;
+        padding: 3px;
+    }
+
+    .dashboard button {
+        vertical-align: bottom;
+        border-radius: 5px;
+        padding: 3px;
+
+    }
+
+    .dashboard textarea {
+        border-radius: 5px;
+        padding: 3px;
+    }
+
+    .dashboard button {
+        margin-left: 575px;
+    }
+
+
+.events {
+    margin-bottom: 30px;
+    display: inline-block;
+    width: 270px;
+    vertical-align: top;
+    margin-left: 85px;
+    
+
+}
+    .events li {
+        margin-top: 15px;
+        margin-bottom: 30px;
+                    
+        padding: 10px;
+        background-color: rgba(255, 255, 255, 0.267);
+        border-radius: 10px;
+    }
+
+    .events ul {
+        display: inline-block;
+    }
+
+    .events ul button {
+        border-radius: 5px;
+        padding: 3px;
+    }
+
+    .events h3 {
+        color: white;
+    }
+
+    .events a {
+        text-decoration: none;
+    }
+
+
+
+:placeholder-shown {
+    color: gainsboro;
+}
+
+
+.posts {
+    /* margin-top: 15px; */
+    margin-bottom: 30px;
+    display: inline-block;
+    width: 350px;
+    vertical-align: top;
+    margin-left: 50px;
+    
+}
+    .posts li {
+        margin-top: 15px;
+        margin-bottom: 30px;
+        /* outline: 1px solid pink; */
+        
+        padding: 10px;
+        background-color: rgba(255, 255, 255, 0.267);
+        border-radius: 10px;
+    }
+
+    .posts ul {
+        display: inline-block;
+        
+    }
+
+    .posts button {
+        border-radius: 5px;
+        padding: 3px;
+
+    }
+
+    .posts a {
+        text-decoration: none;
+    }
+
+    .posts h5 {
+        color: white;
+    }
+    .posts blockquote {
+        padding: 8px;
+    }
+
+    .posts h3 {
+        color: white;
+    }
+

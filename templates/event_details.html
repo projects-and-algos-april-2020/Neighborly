@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style1.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style_event_details.css') }}">
     <title>Event Details</title>
 </head>
 <body>
@@ -15,50 +15,55 @@
             <a href="/logout">Logout</a>
             
         </div>
-        <div class="posts">  
+        <div class="eventpost">  
             <ul>
                 {% for event in all_events %}
+                <h4>{{event.title}} <span>details:</span></h4>
                 <li>
-                    <p>{{event.title}}</p>
-                    <p>{{event.description}}</p>
-                    <h5>hosted by: <a href="/neighbors/profile/{{event.user.id}}"> hosted by: {{event.user.first_name}} {{event.user.last_name}}</a></h5>
-                    <p>At: {{event.location.full_address}}</p>
-                    <p>On: {{event.date}} {{event.time}}</p>
+                    <blockquote>{{event.description}}</blockquote> <br>
+                    <p><h5>Where:</h5>{{event.location.full_address}}</p>
+                    <p><h5>When:</h5> {{event.date}} @ {{event.time}}</p>
                 </li>
+                <h5>hosted by: <a href="/neighbors/profile/{{event.user.id}}"> {{event.user.first_name}} {{event.user.last_name}}</a></h5>
                 {% endfor %}
             </ul>
 
         </div>
-        {% for event in all_events %}
-        <form action="/add/event_comment/{{event.id}}", method="POST">
-            <p><textarea name="message"  cols="45" rows="3" placeholder="Add a message"></textarea></p>
-            <input type="submit" value="Post">
-        </form>
-        {% endfor %}
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            {% for message in messages %}
-                <p>{{message}}</p>
+        <div class="addcomment">
+            {% for event in all_events %}
+                <form action="/add/event_comment/{{event.id}}", method="POST">
+                    <p><textarea name="message"  cols="45" rows="3" placeholder="Add a message"></textarea></p>
+                    <input type="submit" value="Post">
+                </form>
             {% endfor %}
-        {% endif %}
-        {% endwith %}
-        <hr>
-        <h4>Comments:</h4>
-        <ul>
-            {% for comment in all_comments %}
-            <li>{{comment.user.first_name}} wrote: {{comment.message}}</li>
-            {% endfor %}
-        </ul>
-        <hr>
-        <div class="posts">
+
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{message}}</p>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+        </div>
+        
+        <div class="comments">
+            <h4>Comments:</h4>
+            <ul>
+                {% for comment in all_comments %}
+                <li>{{comment.user.first_name}} wrote: {{comment.message}}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        
+        <div class="edit">
             {% for event in all_events %}
                 {% if session['user_id'] == event.user_id %}
                     <h3>Edit your event: </h3>
                     <form action="/update/event/{{event.id}}" method="POST">
-                        <p>Title: <input type="text" name="title" placeholder="{{event.title}}"</p>
-                        <p>Description: <textarea name="description" placeholder="{{ event.description }}"></textarea></p>
-                        <p>Date: <input type="date" name="date" value="{{event.date}}"></p>
-                        <p>Time: <input type="time" name="time" value="{{event.time}}"></p>
+                        <p>Title: <input type="text" name="title"></p>
+                        <p>Description: <input type="text" name="description" ></p>
+                        <p>Date: <input type="date" name="date" ></p>
+                        <p>Time: <input type="time" name="time"></p>
                         <input type="submit" value="Update">                    
                     </form>
                     <hr>

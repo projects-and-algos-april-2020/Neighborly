@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style1.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style_profile.css') }}">
     <title>Profile Page</title>
 </head>
 <body>
@@ -27,16 +27,16 @@
         <div class="user_info"> 
             <ul>
                 <li><h3>Posts</h3></li>
-                {% for history in all_posts %}
-                    <li>{{history.message}}
-                        <p>posted: {{history.created_at}} </p>
+                {% for post in all_posts %}
+                    <li><a href="/post/details/{{post.id}}">{{post.message}}</a>
+                        <p>posted: {{post.created_at}} </p>
                     </li>
                 {% endfor %} 
 
                 <li><h3>Events</h3></li>
-                {% for history in all_events %}
-                    <li>~{{history.title}}
-                        <p>posted: {{history.created_at}}</p>
+                {% for event in all_events %}
+                    <li><a href="/event/details/{{event.id}}">{{event.title}}</a>
+                        <p>posted: {{event.created_at}}</p>
                     </li>
                 {% endfor %} 
        
