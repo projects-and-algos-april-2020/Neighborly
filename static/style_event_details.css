@@ -43,7 +43,7 @@ body {
     line-height: 30px;
     padding-left: 10px;
   }
-
+  
 .container {
     width: 800px;
     background-color: rgb(178, 204, 233);
@@ -60,6 +60,12 @@ body {
 
     .container li {
         list-style: none;
+    }
+
+    .bottom {
+        color: white;
+        vertical-align: middle;
+        text-align: center;
     }
 
 .navigation {
