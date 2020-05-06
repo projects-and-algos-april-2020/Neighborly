@@ -330,8 +330,9 @@ def event_details(event_id):
     if 'user_id' not in session:
         return redirect("/")
     this_event = Event.query.filter_by(id = int(event_id)).all()
+    this_location = Event_location.query.filter_by(id = int(event_id)).all()
     comment = Event_comment.query.filter_by(event_id = int(event_id)).all()
-    return render_template("event_details.html", all_events = this_event, all_comments = comment)
+    return render_template("event_details.html", all_events = this_event, all_comments = comment, all_location = this_location)
 
 def add_event_comments(event_id):
     if 'user_id' not in session:

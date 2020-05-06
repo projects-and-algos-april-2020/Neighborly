@@ -104,6 +104,13 @@ class Event_location(db.Model):
     def full_address(self):
         return self.address + ' ' + self.city 
 
+    @property
+    def ret_address(self):
+        return self.address
+    @property
+    def ret_city(self):
+        return self.city
+
 class Event_comment(db.Model):
     __tablename__ = "event_comments" 
     id = db.Column(db.Integer, primary_key=True)
