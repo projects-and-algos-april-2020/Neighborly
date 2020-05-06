@@ -17,7 +17,7 @@ body {
     height: 100%;
     font-family: Arial, Helvetica;
     letter-spacing: 0.02em;
-   font-weight: 400;
+    font-weight: 400;
    -webkit-font-smoothing: antialiased; 
    }
 
@@ -27,7 +27,6 @@ body {
     height: 600px;
     background-color: rgb(178, 204, 233);
     margin: 50px auto;
-    
     padding: 25px;
     border-radius: 20px;  
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;  
@@ -43,11 +42,16 @@ body {
     }
 
 .navigation {
-    margin-left: 550px;
+    margin-left: 525px;
     border-radius: 2px;
+    color: white;
+    text-shadow: 1px 1px 1px white
 }
 
-
+    .navigation a {
+        padding: 3px;
+        text-decoration: none;
+    }
 
 .user_info {
     display: inline-block;
@@ -105,7 +109,6 @@ body {
 }
     .dashboard h3 {
         padding-bottom: 5px;
-        
         color: white;
     }
 
@@ -130,19 +133,28 @@ body {
         padding: 3px;
     }
 
+    .dashboard button {
+        margin-left: 575px;
+    }
+
 
     .events {
-        margin-top: 15px;
+        /* margin-top: 15px; */
         margin-bottom: 15px;
         display: inline-block;
         width: 200px;
         vertical-align: top;
-        margin-left: 80px;
+        margin-left: 85px;
         
 
     }
         .events li {
             margin-top: 15px;
+            margin-bottom: 30px;
+                        
+            padding: 5px;
+            background-color: rgba(255, 255, 255, 0.267);
+            border-radius: 10px;
         }
 
         .events ul {
@@ -154,6 +166,8 @@ body {
             padding: 3px;
         }
 
+
+
 :placeholder-shown {
     color: gainsboro;
 }
@@ -162,25 +176,33 @@ body {
 
 
     .posts {
-        margin-top: 15px;
+        /* margin-top: 15px; */
         margin-bottom: 15px;
         display: inline-block;
         width: 350px;
         vertical-align: top;
-        margin-left: 30px;
-    
+        margin-left: 50px;
+        
     }
         .posts li {
             margin-top: 15px;
+            margin-bottom: 30px;
+            /* outline: 1px solid pink; */
+            
+            padding: 5px;
+            background-color: rgba(255, 255, 255, 0.267);
+            border-radius: 10px;
         }
     
         .posts ul {
             display: inline-block;
+            
         }
     
         .posts button {
             border-radius: 5px;
             padding: 3px;
+
         }
 
         .posts a {
@@ -191,8 +213,9 @@ body {
             color: white;
         }
         .posts blockquote {
-            outline: 1px solid pink;
+            padding: 8px;
         }
+
 
     .post-details {
         margin-top: 5px;

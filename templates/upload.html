@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styleupload.css') }}">
+    <title>Neighborly</title>
+</head>
+<body>
+    <div id="container">
+        <div id="header">
+            <a href="/dashboard" class="button">Dashboard</a>
+            <a href="/logout" type="submit" class="btn btn-primary">Logout</a>
+        </div>
+        <div id="greeting">Update My Picture</div>
+        <div class="reg_col_left">
+            <p>
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <ul class=flashes>
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                {% endwith %}
+            </p>
+            <form method="post" action="/upload_file" enctype="multipart/form-data">
+                <dl>
+                    <p>
+                        <input type="file" name="file" autocomplete="off" required>
+                    </p>
+                </dl>
+                <br>
+                <p>
+                    <input type="submit" value="Submit">
+                    <a href="/my_profile" class="button">Cancel</a>
+                </p>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
