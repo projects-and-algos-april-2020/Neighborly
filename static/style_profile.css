@@ -89,6 +89,10 @@ body {
         
     }
 
+    .user_info img {
+        width: 120px
+    }
+
     .user_info a {
         text-decoration: none;
     }
@@ -126,3 +130,4 @@ body {
     outline: 1px solid pink; 
     padding: 5px;
 }
+
