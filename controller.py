@@ -105,6 +105,7 @@ def login():
                 flash("Email and/or password do not match")
     return redirect("/")
 
+
 def my_profile():
     if 'user_id' not in session:
         return redirect("/")
@@ -140,7 +141,21 @@ def neighbors_profile(user_id):
     event_history = Event.query.filter_by(user_id = int(user_id))
     return render_template("neighbors_profile.html", all_users = user, all_posts = post_history, all_events = event_history)
 
+def update_aboutme(user_id):
+    if 'user_id' not in session:
+            return redirect("/")
     
+    is_valid = True
+    if len(request.form['about_me']) < 2:
+        is_valid = False
+        flash("Please write a message to post")  
+    if is_valid:
+        this_user = User.query.get(user_id)
+        if this_user is not None:
+            this_user.about_me = request.form['about_me']
+            db.session.commit()
+        return redirect("/my_profile")
+    return redirect("/my_profile")
 
 def dashboard():
     if 'user_id' not in session:
@@ -320,13 +335,30 @@ def update_event(event_id):
     if len(request.form['time']) < 1:
         is_valid = False
         flash("Time is required")
+    if len(request.form['address']) < 1:
+        is_valid = False
+        flash("Location address is required")
+    if len(request.form['city']) < 1:
+        is_valid = False
+        flash("city is required")
+    if len(request.form['state']) < 1:
+        is_valid = False
+        flash("State initials are required")
+    if len(request.form['zipcode']) < 1:
+        is_valid = False
+        flash("Zipcode is required")
     if is_valid:
         this_event = Event.query.filter_by(id = int(event_id)).first()
+        this_event.location = Event_location.query.filter_by(id = int(event_id)).first()
         if this_event is not None:
             this_event.title = request.form['title']
             this_event.description = request.form['description']
             this_event.date = request.form['date']
             this_event.time = request.form['time']
+            this_event.location.address = request.form['address']
+            this_event.location.city = request.form['city']
+            this_event.location.state = request.form['state']
+            this_event.location.zipcode = request.form['zipcode']
             db.session.commit()
             return redirect("/dashboard")
         return redirect("/edit/event/{}".format(event_id))
