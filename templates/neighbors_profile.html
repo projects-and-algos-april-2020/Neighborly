@@ -22,12 +22,15 @@
                     <li>{{user.first_name}} {{user.last_name}}
                         <p>{{user.email}}</p> 
                     </li> 
+                    <li>
+                        <img src="{{url_for('static', filename='placeholder.png')}}">
+                    </li>
                 </ul> 
             {% endfor %}
             <div class="about_me">
                 {% for user in all_users %}
                     {% if user.about_me == None %}
-                        
+
                     {% else %}
                         <h4>About me:</h4>
                         <blockquote>

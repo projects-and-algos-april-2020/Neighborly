@@ -22,8 +22,10 @@
                     <li>{{user.first_name}} {{user.last_name}}
                         <p>{{user.email}}</p> 
                     </li>
-                        <img src="{{user.profile_pic}}" alt="profile picture." height="160" width="148">
+                    <li>
+                        <img src="{{url_for('static', filename='placeholder.png')}}" alt="profile picture">
                         <a href="/upload_form">Add Picture</a>
+                    </li>
                     <li>
                         <!-- {% if session['user_id'] == user.id %}
                             <a href="/delete/account/{{user.id}}">Delete My Account</a>
