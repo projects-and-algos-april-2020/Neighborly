@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_bcrypt import Bcrypt
 import urllib.request
-UPLOAD_FOLDER = 'C:\\Users\\imeli\\OneDrive\\Documents\\CodingDojo\\Projects_Algos\\group_project\\static\\'
+UPLOAD_FOLDER = 'C:\\Users\\traubhome\\Desktop\\Coding_Dojo\\Projects and Algorithms\\Neighborly\\static'
 
 
 
