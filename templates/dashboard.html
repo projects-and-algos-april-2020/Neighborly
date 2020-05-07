@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style1.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style_dashboard.css') }}">
     <title>Dashboard</title>
 </head>
 <body>
@@ -11,14 +11,15 @@
         <h1>Neighborly</h1>
         <div class="navigation">
             <a href="/dashboard">Dashboard</a>
-            <a href="/my_profile">Profile</a>
+            <a href="/my_profile">My Profile</a>
             <a href="/logout">Logout</a>
+            <a href="/all_users">Neighbors</a>
         </div>
         <div class="dashboard">
             {% for cur_user in all_users %}
             <h3>{{cur_user.first_name}}'s Dashboard!</h3>
             {% endfor %}
-            <hr>
+            <br>
             <form action="/add/post" method="POST">
                 <p> <textarea name="message" cols="45" rows="3" placeholder="Write a post here"></textarea></p>
                 <input type="submit" value="Post">
@@ -29,40 +30,40 @@
                     <p>{{message}}</p>
                 {% endfor %}
             {% endif %}
-            {% endwith %}
-            <hr>            
+            {% endwith %}            
             <a href="/events"><button>Add an Event</button></a>
             <hr>
-            <div class="posts">
-                <h3>Posts</h3>
-                <ul>
-                    {% for post in all_posts %}
-                    <li>
-                        <p>{{post.user.full_name}} says:</p> 
-                        <blockquote><a href="post/details/{{post.id}}">{{post.message}}</a></blockquote>
-                        <p>Likes: {{ post.num_likes }} </p> 
-                        <p>Comments: {{ post.num_comments }} </p>
-                        
-                        {% if session['user_id'] != post.user_id %}
-                            <a href="/add/like/{{post.id}}"><button>Like!</button></a>
-                        {% endif %}
-                    </li>
-                    {% endfor %}
-                </ul>
-            </div>
-            <div class="events">
-                <h3>Events</h3>
-                <ul>
-                    {% for event in all_events %}
-                    <li>
-                        <h4><a href="/event/details/{{event.id}}">{{event.title}}</a></h4>
-                        <p>host: {{event.user.first_name}} {{event.user.last_name}}</p>
-                        <p>on: {{event.date}}</p>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </div>   
+            <br>
         </div>
+        <div class="posts">
+            <h3>Posts</h3>
+            <ul>
+                {% for post in all_posts %}
+                <li>
+                    <p>{{post.user.full_name}} says:</p> 
+                    <blockquote><a href="/post/details/{{post.id}}">{{post.message}}</a></blockquote>
+                    <p>Likes: {{ post.num_likes }} </p> 
+                    <p>Comments: {{ post.num_comments }} </p>
+                    
+                    {% if session['user_id'] != post.user_id %}
+                        <a href="/add/like/{{post.id}}"><button>Like!</button></a>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="events">
+            <h3>Events</h3>
+            <ul>
+                {% for event in all_events %}
+                <li>
+                    <p><a href="/event/details/{{event.id}}">{{event.title}}</a></p>
+                    <p>host: {{event.user.first_name}} {{event.user.last_name}}</p>
+                    <p>on: {{event.date}}</p>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>   
     </div>
 </body>
 </html>

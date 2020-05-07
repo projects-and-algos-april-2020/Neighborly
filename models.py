@@ -15,6 +15,7 @@ class User(db.Model):
     address_id = db.Column(db.Integer, db.ForeignKey('addresses.id', ondelete='cascade'))
     address = db.relationship('Address', foreign_keys=[address_id])
     password_hash=db.Column(db.String(255))
+    profile_pic = db.Column(db.Text) 
     likes_sent = db.relationship('Post', secondary=likes_table, passive_deletes=True)
     all_post = db.relationship('Post', back_populates="user", cascade="all, delete, delete-orphan")
     all_event = db.relationship('Event', back_populates="user", cascade="all, delete, delete-orphan")
@@ -27,6 +28,13 @@ class User(db.Model):
     def full_name(self):
         return self.first_name + ' ' + self.last_name
 
+    @property
+    def num_posts(self):
+        return len(self.all_post)
+
+    @property
+    def num_events(self):
+        return len(self.all_event)
 
 class Address(db.Model):
     __tablename__ = "addresses" 
@@ -102,6 +110,13 @@ class Event_location(db.Model):
     @property
     def full_address(self):
         return self.address + ' ' + self.city 
+
+    @property
+    def ret_address(self):
+        return self.address
+    @property
+    def ret_city(self):
+        return self.city
 
 class Event_comment(db.Model):
     __tablename__ = "event_comments" 

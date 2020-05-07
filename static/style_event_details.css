@@ -21,7 +21,29 @@ body {
    -webkit-font-smoothing: antialiased; 
    }
 
-
+   #map {
+    height: 100%;
+  }
+  /* Optional: Makes the sample page fill the window. */
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  #floating-panel {
+    position: absolute;
+    top: 10px;
+    left: 25%;
+    z-index: 5;
+    background-color: #fff;
+    padding: 5px;
+    border: 1px solid #999;
+    text-align: center;
+    font-family: 'Roboto','sans-serif';
+    line-height: 30px;
+    padding-left: 10px;
+  }
+  
 .container {
     width: 800px;
     background-color: rgb(178, 204, 233);
@@ -40,6 +62,12 @@ body {
         list-style: none;
     }
 
+    .bottom {
+        color: white;
+        vertical-align: middle;
+        text-align: center;
+    }
+
 .navigation {
     margin-left: 450px;
     border-radius: 2px;
@@ -52,60 +80,16 @@ body {
         text-decoration: none;
     }
 
-
-    .events {
-        /* margin-top: 15px; */
-        margin-bottom: 30px;
-        display: inline-block;
-        width: 270px;
-        vertical-align: top;
-        margin-left: 85px;
-        
-
-    }
-        .events li {
-            margin-top: 15px;
-            margin-bottom: 30px;
-                        
-            padding: 10px;
-            background-color: rgba(255, 255, 255, 0.267);
-            border-radius: 10px;
-        }
-
-        .events ul {
-            display: inline-block;
-        }
-
-        .events ul button {
-            border-radius: 5px;
-            padding: 3px;
-        }
-
-        .events h3 {
-            color: white;
-        }
-
-        .events a {
-            text-decoration: none;
-        }
-
-
-
-:placeholder-shown {
-    color: gainsboro;
-}
-
-
-    .posts {
+    .eventpost {
         /* margin-top: 15px; */
         margin-bottom: 30px;
         display: inline-block;
         width: 350px;
-        vertical-align: top;
+        /* vertical-align: top; */
         margin-left: 50px;
         
     }
-        .posts li {
+        .eventpost li {
             margin-top: 15px;
             margin-bottom: 30px;
             /* outline: 1px solid pink; */
@@ -115,58 +99,65 @@ body {
             border-radius: 10px;
         }
     
-        .posts ul {
+        /* .eventpost ul {
             display: inline-block;
             
-        }
+        } */
     
-        .posts button {
-            border-radius: 5px;
-            padding: 3px;
 
-        }
 
-        .posts a {
+        .eventpost a {
             text-decoration: none;
         }
    
-        .posts h5 {
+        .eventpost h5 {
             color: white;
         }
-        .posts blockquote {
+        .event-post blockquote {
             padding: 8px;
         }
 
-        .posts h3 {
+        .eventpost h3 {
             color: white;
         }
 
+        .eventpost span {
+            color: white;
+        }
 
-    .post-details {
-        margin-top: 5px;
-        margin-bottom: 15px;
-        display: inline-block;
-        width: 300px;
-        vertical-align: top;
-        margin-left: 50px;
-    
+    .addcomment input {
+        border-radius: 5px;
+        padding: 3px;
+
     }
     
-        .post-details ul {
-            display: inline-block;
-        }
-    
-        .post-details button {
-            border-radius: 5px;
-            padding: 3px;
-        }
+    .addcomment textarea {
+        border-radius: 5px;
+        padding: 3px;
+    }
 
-        .post-details a {
-            text-decoration: none;
-        }
-   
-        .post-details h5 {
-            color: white;
-        }
-
+    .comments {
+        display: inline-block;
+        padding: 15px;
+        width: 400px;
+    }
     
+    .comments h4 {
+        color: white;
+    }
+
+    .comments ul {
+        margin-top: 8px;
+    }
+
+    .comments li {
+        margin-bottom: 15px;
+    }
+
+    .edit {
+        display: inline-block;
+        vertical-align: top;
+        text-align: right;
+        margin-left: 100px;
+        font-size: 12px;
+    }

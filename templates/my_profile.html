@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style1.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style_profile.css') }}">
     <title>Profile Page</title>
 </head>
 <body>
@@ -11,8 +11,9 @@
         <h1>Neighborly</h1>
         <div class="navigation">
             <a href="/dashboard">Dashboard</a>
-            <a href="/my_profile">Profile</a>
+            <a href="/my_profile">My Profile</a>
             <a href="/logout">Logout</a>
+            <a href="/all_users">Neighbors</a>
         </div>
         <div class="user_info">
             {% for user in all_users %}
@@ -21,29 +22,33 @@
                     <li>{{user.first_name}} {{user.last_name}}
                         <p>{{user.email}}</p> 
                     </li>
+<<<<<<< HEAD
                             <img src="{{user['profile_pic']}}" alt="Students profile picture." height="160" width="148">
                             <a href="/upload_form">Add Picture</a>
+=======
+                        <img src="{{user.profile_pic}}" alt="profile picture." height="160" width="148">
+                        <a href="/upload_form">Add Picture</a>
+>>>>>>> 1560abe593965f9581040dc7495c562a15265dad
                     <li>
-                        {% if session['user_id'] == user.id %}
+                        <!-- {% if session['user_id'] == user.id %}
                             <a href="/delete/account/{{user.id}}">Delete My Account</a>
-                        {% endif %}
+                        {% endif %} -->
                     </li>
                 </ul> 
             {% endfor %}
         </div>
         <div class="user_info"> 
             <ul>
-                {% for history in all_posts %}
-                    <li><h3>Posts</h3></li>
-                    <li>{{history.message}}
-                        <p>posted: {{history.created_at}} </p>
+                <li><h3>Posts</h3></li>
+                {% for post in all_posts %}
+                    <li><a href="/post/details/{{post.id}}">{{post.message}}</a>
+                        <p>posted: {{post.created_at}} </p>
                     </li>
                 {% endfor %} 
-
-                {% for history in all_events %}
-                    <li><h3>Events</h3></li>
-                    <li>{{history.title}}
-                        <p>posted: {{history.created_at}}</p>
+                <li><h3>Events</h3></li>
+                {% for event in all_events %}
+                    <li><a href="/event/details/{{event.id}}">{{event.title}}</a>
+                        <p>posted: {{event.created_at}}</p>
                     </li>
                 {% endfor %}     
             </ul>

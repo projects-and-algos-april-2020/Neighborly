@@ -17,7 +17,7 @@ def allowed_file(filename):
 
 def index():
     print("*"*40)
-    return render_template("index2.html")
+    return render_template("login.html")
 
 def register():
     return render_template("register.html")
@@ -126,6 +126,12 @@ def my_profile():
     post_history = Post.query.filter_by(user_id= session['user_id'])
     event_history = Event.query.filter_by(user_id = session['user_id'])
     return render_template("my_profile.html", all_users = user, all_posts = post_history, all_events = event_history)
+
+def all_users():
+    if 'user_id' not in session:
+        return redirect("/")
+    users = User.query.all()
+    return render_template("all_neighbors.html", all_users = users)
 
 def delete_user(user_id):
     if 'user_id' not in session:
@@ -344,8 +350,9 @@ def event_details(event_id):
     if 'user_id' not in session:
         return redirect("/")
     this_event = Event.query.filter_by(id = int(event_id)).all()
+    this_location = Event_location.query.filter_by(id = int(event_id)).all()
     comment = Event_comment.query.filter_by(event_id = int(event_id)).all()
-    return render_template("event_details.html", all_events = this_event, all_comments = comment)
+    return render_template("event_details.html", all_events = this_event, all_comments = comment, all_location = this_location)
 
 def add_event_comments(event_id):
     if 'user_id' not in session:

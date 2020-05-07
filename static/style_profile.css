@@ -1,0 +1,117 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    /* outline: 1px solid pink; */
+}
+
+
+
+
+body {
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: top;
+    background-image: url("clouds.png");
+    width: 100%;
+    height: 100%;
+    font-family: Arial, Helvetica;
+    letter-spacing: 0.02em;
+    font-weight: 400;
+   -webkit-font-smoothing: antialiased; 
+   }
+
+
+.container {
+    width: 800px;
+    background-color: rgb(178, 204, 233);
+    margin: 50px auto;
+    padding: 30px;
+    border-radius: 20px;  
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;  
+}
+
+    .container h1 {
+        font-family: cursive;
+        color: white;
+    }
+
+    .container li {
+        list-style: none;
+    }
+
+.navigation {
+    margin-left: 400px;
+    border-radius: 2px;
+    color: white;
+    text-shadow: 1px 1px 1px white
+}
+
+    .navigation a {
+        padding: 3px;
+        text-decoration: none;
+    }
+
+.user_info {
+    display: inline-block;
+    margin-left: 50px;
+    margin-bottom: 30px;
+    padding: 5px;
+    width: 300px;
+}
+
+    .user_info h2 {
+        color: white;
+        font-family: cursive;
+        padding: 10px;
+        margin-top: 5px;
+        margin-bottom: 10px;
+
+    }
+
+    .user_info ul {
+        display: inline-block;
+        vertical-align: top;
+        padding: 5px;
+    }
+
+    .user_info ul h3 {
+        color: white;
+        font-family: cursive;
+        display: inline-block
+    }
+
+
+    .user_info li {
+        padding: 5px;
+       
+        
+    }
+
+    .user_info a {
+        text-decoration: none;
+    }
+
+.neighbors {
+    text-align: center;
+    margin-top: 15px;
+    
+} 
+
+ .neighbors table {
+    outline: 1px solid pink; 
+} 
+ .neighbors tr {
+    outline: 1px solid pink; 
+}
+
+.neighbors th {
+    outline: 1px solid pink; 
+    padding: 5px;
+
+}
+
+.neighbors td {
+    outline: 1px solid pink; 
+    padding: 5px;
+}

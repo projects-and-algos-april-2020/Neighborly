@@ -1,0 +1,138 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    /* outline: 1px solid pink; */
+}
+
+
+
+
+body {
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: top;
+    background-image: url("clouds.png");
+    width: 100%;
+    height: 100%;
+    font-family: Arial, Helvetica;
+    letter-spacing: 0.02em;
+    font-weight: 400;
+   -webkit-font-smoothing: antialiased; 
+   }
+
+
+.container {
+    width: 800px;
+    background-color: rgb(178, 204, 233);
+    margin: 50px auto;
+    padding: 30px;
+    border-radius: 20px;  
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;  
+}
+
+    .container h1 {
+        font-family: cursive;
+        color: white;
+    }
+
+    .container li {
+        list-style: none;
+    }
+
+.navigation {
+    margin-left: 400px;
+    border-radius: 2px;
+    color: white;
+    text-shadow: 1px 1px 1px white
+}
+
+    .navigation a {
+        padding: 3px;
+        text-decoration: none;
+    }
+
+
+.postdetails {
+    margin-top: 5px;
+    margin-bottom: 15px;
+    display: inline-block;
+    width: 300px;
+    vertical-align: top;
+    margin-left: 50px;
+
+}
+    .postdetails a {
+        text-decoration: none;
+    }
+
+    .postdetails blockquote {
+        padding: 8px;
+    }
+
+    .postdetails li {
+        margin-top: 15px;
+        margin-bottom: 5px;
+        outline: 1px solid pink;
+        
+        padding: 10px;
+        background-color: rgba(255, 255, 255, 0.267);
+        border-radius: 10px;
+    }
+
+    .postdetails h4 {
+        margin-bottom: 15px;
+    }
+
+    .postdetails span {
+        color: white;
+    }
+
+
+.addcomment textarea {
+    border-radius: 5px;
+    padding: 3px;
+}
+    
+        
+.likescomments {
+    /* display: inline-block; */
+    padding: 15px;
+    width: 400px;
+}
+
+    .likescomments h5 {
+        color: white;
+    }
+
+    .likescomments ul {
+        margin-top: 8px;
+        margin-bottom: 10px;
+    }
+
+    .likescomments li {
+        margin-bottom: 3px;
+    }
+
+
+.addcomment textarea {
+    border-radius: 5px;
+    padding: 3px;
+}
+
+.addcomment input {
+    border-radius: 5px;
+    padding: 3px;
+
+}
+
+.edit {
+    display: inline-block;
+    vertical-align: top;
+    text-align: right;
+    margin-left: 570px;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+    
