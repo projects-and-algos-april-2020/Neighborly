@@ -320,13 +320,30 @@ def update_event(event_id):
     if len(request.form['time']) < 1:
         is_valid = False
         flash("Time is required")
+    if len(request.form['address']) < 1:
+        is_valid = False
+        flash("Location address is required")
+    if len(request.form['city']) < 1:
+        is_valid = False
+        flash("city is required")
+    if len(request.form['state']) < 1:
+        is_valid = False
+        flash("State initials are required")
+    if len(request.form['zipcode']) < 1:
+        is_valid = False
+        flash("Zipcode is required")
     if is_valid:
         this_event = Event.query.filter_by(id = int(event_id)).first()
+        this_event.location = Event_location.query.filter_by(id = int(event_id)).first()
         if this_event is not None:
             this_event.title = request.form['title']
             this_event.description = request.form['description']
             this_event.date = request.form['date']
             this_event.time = request.form['time']
+            this_event.location.address = request.form['address']
+            this_event.location.city = request.form['city']
+            this_event.location.state = request.form['state']
+            this_event.location.zipcode = request.form['zipcode']
             db.session.commit()
             return redirect("/dashboard")
         return redirect("/edit/event/{}".format(event_id))
