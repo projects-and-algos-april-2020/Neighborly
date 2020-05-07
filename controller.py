@@ -105,6 +105,7 @@ def login():
                 flash("Email and/or password do not match")
     return redirect("/")
 
+
 def my_profile():
     if 'user_id' not in session:
         return redirect("/")
@@ -140,7 +141,21 @@ def neighbors_profile(user_id):
     event_history = Event.query.filter_by(user_id = int(user_id))
     return render_template("neighbors_profile.html", all_users = user, all_posts = post_history, all_events = event_history)
 
+def update_aboutme(user_id):
+    if 'user_id' not in session:
+            return redirect("/")
     
+    is_valid = True
+    if len(request.form['about_me']) < 2:
+        is_valid = False
+        flash("Please write a message to post")  
+    if is_valid:
+        this_user = User.query.get(user_id)
+        if this_user is not None:
+            this_user.about_me = request.form['about_me']
+            db.session.commit()
+        return redirect("/my_profile")
+    return redirect("/my_profile")
 
 def dashboard():
     if 'user_id' not in session:
