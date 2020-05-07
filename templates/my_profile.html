@@ -21,7 +21,7 @@
                     <li>{{user.first_name}} {{user.last_name}}
                         <p>{{user.email}}</p> 
                     </li>
-                            <img src="{{user['student_pic']}}" alt="Students profile picture." height="160" width="148">
+                            <img src="{{user['profile_pic']}}" alt="Students profile picture." height="160" width="148">
                             <a href="/upload_form">Add Picture</a>
                     <li>
                         {% if session['user_id'] == user.id %}
