@@ -77,7 +77,7 @@
 <body>
     <div id="container">
         <div id="header">
-            <a href="/success" class="button">Dashboard</a>
+            <a href="/dashboard" class="button">Dashboard</a>
             <a href="/logout" type="submit" class="btn btn-primary">Logout</a>
         </div>
         <div id="greeting">Update My Picture</div>
@@ -93,7 +93,7 @@
                 {% endif %}
                 {% endwith %}
             </p>
-            <form method="post" action="/upload_file" enctype="multipart/form-data">
+            <form method="post" action="/upload_file/<file>" enctype="multipart/form-data">
                 <dl>
                     <p>
                         <input type="file" name="file" autocomplete="off" required>
