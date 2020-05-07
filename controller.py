@@ -3,7 +3,7 @@ from config import app, db, bcrypt
 from models import User, Address, Post, Post_comment, Event, Event_location, Event_comment, likes_table
 from datetime import date, time
 import re
-import os
+import os.path
 import urllib.request
 from app import app
 from werkzeug.utils import secure_filename
@@ -23,26 +23,31 @@ def register():
     return render_template("register.html")
 
 def upload_form():
-	return render_template("upload.html")
+    return render_template("upload.html")
 
 def upload_file():
-	if request.method == 'POST':
+    if request.method == 'POST':
             # check if the post request has the file part
-		if 'file' not in request.files:
-			flash('No file part')
-			return redirect(request.url)
-		file = request.files['file']
-		if file.filename == '':
-			flash('No file selected for uploading')
-			return redirect(request.url)
-		if file and allowed_file(file.filename):
-			filename = secure_filename(file.filename)
-			file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-			flash('File successfully uploaded')
-			return redirect('/my_profile')
-		else:
-			flash('Allowed file types are txt, pdf, png, jpg, jpeg, gif')
-			return redirect(request.url)
+        if 'file' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+        file = request.files['file']
+        if file.filename == '':
+            flash('No file selected for uploading')
+            return redirect(request.url)
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            full_path = (os.path.join(app.config['UPLOAD_FOLDER'], filename))
+#            user = User.query.get(session['user_id'])
+#            user.profile_pic.append(full_path)
+#            db.session.commit()
+#         SHOULD BE UPDATING THE USER PROFILE_PIC FIELD WITH FULL_PATH
+            file.save(full_path)
+            flash('File successfully uploaded')
+            return redirect('/my_profile')
+        else:
+            flash('Allowed file types are txt, pdf, png, jpg, jpeg, gif')
+            return redirect(request.url)
 
 def add_user():
     if len(request.form['fname'])<2:
