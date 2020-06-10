@@ -26,9 +26,16 @@ def upload_form():
     return render_template("upload.html")
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 def upload_file():
     if request.method == 'POST':
             # check if the post request has the file part
+=======
+           
+def upload_file():
+    if request.method == 'POST':
+        # check if the post request has the file part
+>>>>>>> 8dfa9e882a4a10282c0a18daeae6bb746bc12b34
         if 'file' not in request.files:
             flash('No file part')
             return redirect(request.url)
@@ -38,17 +45,22 @@ def upload_file():
             return redirect(request.url)
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
+<<<<<<< HEAD
             full_path = (os.path.join(app.config['UPLOAD_FOLDER'], filename))
 #            user = User.query.get(session['user_id'])
 #            user.profile_pic.append(full_path)
 #            db.session.commit()
 #         SHOULD BE UPDATING THE USER PROFILE_PIC FIELD WITH FULL_PATH
             file.save(full_path)
+=======
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+>>>>>>> 8dfa9e882a4a10282c0a18daeae6bb746bc12b34
             flash('File successfully uploaded')
             return redirect('/my_profile')
         else:
             flash('Allowed file types are txt, pdf, png, jpg, jpeg, gif')
             return redirect(request.url)
+<<<<<<< HEAD
 =======
 def upload_file(file):
 	if request.method == 'POST':
@@ -83,6 +95,10 @@ def upload_file(file):
 # opens and displays image in browser
 # def uploaded_file(filename):
 # 	return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+=======
+
+
+>>>>>>> 8dfa9e882a4a10282c0a18daeae6bb746bc12b34
 
 def add_user():
     if len(request.form['fname'])<2:
@@ -145,6 +161,7 @@ def login():
                 flash("Email and/or password do not match")
     return redirect("/")
 
+
 def my_profile():
     if 'user_id' not in session:
         return redirect("/")
@@ -180,7 +197,21 @@ def neighbors_profile(user_id):
     event_history = Event.query.filter_by(user_id = int(user_id))
     return render_template("neighbors_profile.html", all_users = user, all_posts = post_history, all_events = event_history)
 
+def update_aboutme(user_id):
+    if 'user_id' not in session:
+            return redirect("/")
     
+    is_valid = True
+    if len(request.form['about_me']) < 2:
+        is_valid = False
+        flash("Please write a message to post")  
+    if is_valid:
+        this_user = User.query.get(user_id)
+        if this_user is not None:
+            this_user.about_me = request.form['about_me']
+            db.session.commit()
+        return redirect("/my_profile")
+    return redirect("/my_profile")
 
 def dashboard():
     if 'user_id' not in session:
@@ -360,13 +391,30 @@ def update_event(event_id):
     if len(request.form['time']) < 1:
         is_valid = False
         flash("Time is required")
+    if len(request.form['address']) < 1:
+        is_valid = False
+        flash("Location address is required")
+    if len(request.form['city']) < 1:
+        is_valid = False
+        flash("city is required")
+    if len(request.form['state']) < 1:
+        is_valid = False
+        flash("State initials are required")
+    if len(request.form['zipcode']) < 1:
+        is_valid = False
+        flash("Zipcode is required")
     if is_valid:
         this_event = Event.query.filter_by(id = int(event_id)).first()
+        this_event.location = Event_location.query.filter_by(id = int(event_id)).first()
         if this_event is not None:
             this_event.title = request.form['title']
             this_event.description = request.form['description']
             this_event.date = request.form['date']
             this_event.time = request.form['time']
+            this_event.location.address = request.form['address']
+            this_event.location.city = request.form['city']
+            this_event.location.state = request.form['state']
+            this_event.location.zipcode = request.form['zipcode']
             db.session.commit()
             return redirect("/dashboard")
         return redirect("/edit/event/{}".format(event_id))

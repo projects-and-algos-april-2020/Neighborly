@@ -58,6 +58,7 @@ body {
     margin-bottom: 30px;
     padding: 5px;
     width: 300px;
+    vertical-align: top;
 }
 
     .user_info h2 {
@@ -88,9 +89,23 @@ body {
         
     }
 
+    .user_info img {
+        width: 120px
+    }
+
     .user_info a {
         text-decoration: none;
     }
+
+.about_me {
+
+  
+    display: inline-block;
+}
+
+.about_me h4 {
+    color: white;
+}
 
 .neighbors {
     text-align: center;
@@ -98,10 +113,10 @@ body {
     
 } 
 
- .neighbors table {
+.neighbors table {
     outline: 1px solid pink; 
 } 
- .neighbors tr {
+.neighbors tr {
     outline: 1px solid pink; 
 }
 
@@ -115,3 +130,4 @@ body {
     outline: 1px solid pink; 
     padding: 5px;
 }
+

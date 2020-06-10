@@ -23,6 +23,7 @@
                         <p>{{user.email}}</p> 
                     </li>
 <<<<<<< HEAD
+<<<<<<< HEAD
                         <li><img src="/static/BrightIdeas.png" alt="profile picture." height="160" width="148"></li>
                         <a href="/upload_form">Add Picture</a>
 =======
@@ -33,6 +34,12 @@
                         <img src="{{user.profile_pic}}" alt="profile picture." height="160" width="148">
                         <a href="/upload_form">Add Picture</a>
 >>>>>>> 1560abe593965f9581040dc7495c562a15265dad
+=======
+                    <li>
+                        <img src="{{url_for('static', filename='placeholder.png')}}" alt="profile picture">
+                        <a href="/upload_form">Add Picture</a>
+                    </li>
+>>>>>>> 8dfa9e882a4a10282c0a18daeae6bb746bc12b34
                     <li>
                         <!-- {% if session['user_id'] == user.id %}
                             <a href="/delete/account/{{user.id}}">Delete My Account</a>
@@ -41,6 +48,21 @@
 >>>>>>> b14ee31be22b00047bd32d097ac95ffcbeee06f2
                 </ul> 
             {% endfor %}
+            <div class="about_me">
+                {% for user in all_users %}
+                    {% if user.about_me == None %}
+                        <form action="/update_aboutme/{{user.id}}" method="POST">
+                            <textarea name="about_me" placeholder="About me: Tell us more!"></textarea> 
+                            <input type="submit" value="Add">
+                        </form>
+                    {% else %}
+                        <h4>About me:</h4>
+                        <blockquote>
+                            {{user.about_me}}
+                        </blockquote>
+                    {% endif %}
+                {% endfor %}
+            </div>
         </div>
         <div class="user_info"> 
             <ul>
