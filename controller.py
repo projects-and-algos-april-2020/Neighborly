@@ -25,7 +25,7 @@ def register():
 def upload_form():
     return render_template("upload.html")
 
-<<<<<<< HEAD
+
 <<<<<<< HEAD
 def upload_file():
     if request.method == 'POST':
