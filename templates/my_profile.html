@@ -22,8 +22,23 @@
                     <li>{{user.first_name}} {{user.last_name}}
                         <p>{{user.email}}</p> 
                     </li>
+<<<<<<< HEAD
                         <li><img src="/static/BrightIdeas.png" alt="profile picture." height="160" width="148"></li>
                         <a href="/upload_form">Add Picture</a>
+=======
+<<<<<<< HEAD
+                            <img src="{{user['profile_pic']}}" alt="Students profile picture." height="160" width="148">
+                            <a href="/upload_form">Add Picture</a>
+=======
+                        <img src="{{user.profile_pic}}" alt="profile picture." height="160" width="148">
+                        <a href="/upload_form">Add Picture</a>
+>>>>>>> 1560abe593965f9581040dc7495c562a15265dad
+                    <li>
+                        <!-- {% if session['user_id'] == user.id %}
+                            <a href="/delete/account/{{user.id}}">Delete My Account</a>
+                        {% endif %} -->
+                    </li>
+>>>>>>> b14ee31be22b00047bd32d097ac95ffcbeee06f2
                 </ul> 
             {% endfor %}
         </div>
